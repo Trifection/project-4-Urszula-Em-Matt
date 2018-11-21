@@ -13,14 +13,17 @@ newsApp.getArticle = function(){
                 'api-key': newsApp.apiKey,
                 'begin_date': `${userDate}`,
                 'end_date': `${userDate}`,
+                page: 2,
             },
         }).then(res => {
             console.log('hello');
-            console.log(res) 
+            console.log(res.response.docs[0].headline.main) 
         })
 }
 
 const userDate = prompt("on what day were you born?");
+
+// const userDate = `20150304`;
 
 $(function () { // start document ready 
     newsApp.init();
@@ -32,6 +35,7 @@ newsApp.init = function () {
 }
 
 
+//console.log(res.response.docs[0].headline.main) 
 
 
 
