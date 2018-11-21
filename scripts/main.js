@@ -20,7 +20,7 @@ newsApp.getArticle = function(){
         })
 }
 
-const userDate = prompt("on what day were you born?");
+// const userDate = prompt("on what day were you born?");
 
 $(function () { // start document ready 
     newsApp.init();

@@ -1,0 +1,93 @@
+img{
+    width:100%;
+    display: block;
+}
+
+body{
+
+}
+
+.wrapper{
+    // max-width:1200px;
+    // width:90%;
+    // margin: 0 auto;
+}
+
+
+header{
+    border:5px solid black;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 12fr;
+    grid-gap: 15px;
+
+    .header-img-logo{
+        grid-column: 5 / 9;
+        padding: 20px 0 0 0;
+    }
+    .website-intro{
+        text-align:center;
+        grid-column: 2 / 12;
+    }
+}
+
+form{
+    grid-column: 2 / 12;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    // padding: 5px 0;
+    .form-input{
+        border: 1px solid black;
+        margin-right:15px;
+    }
+    #year, #month, #day, #category, #btn-submit{
+        width: 20%;
+    }
+    #btn-submit{
+        background: black;
+        color:white;
+        border:none;
+    }
+}
+
+.main-article{
+    grid-column: 4 / 10;
+    &-image{
+        width:100%;
+        height: 345px;
+        overflow: hidden;
+        img{
+            //need to revisit this. Images are not centering within div.
+            object-fit: cover;
+            object-position: center center;
+        }
+    }
+}
+
+.side-articles-container{
+    &-left{
+        grid-column: 2 / 4;
+    }
+    &-right{
+        grid-column: 10 / 12;
+    }
+}
+
+
+
+
+
+// TABLET--------------------------------------------
+@media (min-width: 767px) and (max-width: 1024px) {
+
+
+}
+
+// MOBILE--------------------------------------------
+@media (min-width: 320px) and (max-width: 767px) {
+    header{
+        width:100%;
+    }
+}
