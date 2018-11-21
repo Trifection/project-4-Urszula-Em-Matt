@@ -4,22 +4,22 @@
 const newsApp = {};
 newsApp.apiKey = `4135dcf939eb4bae959a26ff87fedc97`;
 
-// newsApp.getArticle = function(){
-//         $.ajax({
-//             url: `https://api.nytimes.com/svc/search/v2/articlesearch.json`,
-//             method: 'GET',
-//             dataType: 'json',
-//             data: {
-//                 'api-key': newsApp.apiKey,
-//                 'begin_date': `${userDate}`,
-//                 'end_date': `${userDate}`,
-//             },
-//         }).then(res => {
-//             console.log(res.response.docs); 
-//         })
-// }
+newsApp.getArticle = function(){
+        $.ajax({
+            url: `https://api.nytimes.com/svc/search/v2/articlesearch.json`,
+            method: 'GET',
+            dataType: 'json',
+            data: {
+                'api-key': newsApp.apiKey,
+                'begin_date': `${userDate}`,
+                'end_date': `${userDate}`,
+            },
+        }).then(res => {
+            console.log(res.response.docs); 
+        })
+}
 
-// const userDate = prompt("on what day were you born?");
+const userDate = prompt("on what day were you born?");
 
 // WEATHER
 newsApp.getWeather = () => {
@@ -51,7 +51,4 @@ newsApp.init = function () {
 }
 
 
-
-
-
-
+//console.log(res.response.docs[0].headline.main) 
