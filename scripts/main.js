@@ -13,17 +13,32 @@ newsApp.getArticle = function(){
                 'api-key': newsApp.apiKey,
                 'begin_date': `${userDate}`,
                 'end_date': `${userDate}`,
-                page: 2,
             },
         }).then(res => {
-            console.log('hello');
-            console.log(res.response.docs[0].headline.main) 
+            console.log(res.response.docs); 
         })
 }
 
 const userDate = prompt("on what day were you born?");
 
-// const userDate = `20150304`;
+// WEATHER
+newsApp.getWeather = () => {
+    const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
+    let lat =  40.712;
+    let long = -74.006;
+    let time = 746236800;
+    let unit = "?units=ca";
+    // let exclude = "?exclude=currently,flags";
+    let url = `https://api.darksky.net/forecast/${key}/${lat},${long},${time}`; // time machine request
+
+    // get darksky api data
+    $.ajax({
+        url: url,
+        dataType: 'jsonp',
+    }).then((res) =>{
+        console.log(res);
+    })
+}
 
 $(function () { // start document ready 
     newsApp.init();
@@ -31,12 +46,9 @@ $(function () { // start document ready
 
 
 newsApp.init = function () {
-    newsApp.getArticle();
+    // newsApp.getArticle(); 
+    newsApp.getWeather();
 }
 
 
 //console.log(res.response.docs[0].headline.main) 
-
-
-
-
