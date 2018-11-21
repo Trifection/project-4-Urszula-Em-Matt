@@ -15,9 +15,12 @@ newsApp.getArticle = function(){
                 'api-key': newsApp.apiKey,
                 'begin_date': `${userDate}`,
                 'end_date': `${userDate}`,
+                'fl': `news_desk,web_url,headline,multimedia` 
             },
         }).then(res => {
-            console.log(res.response.docs[3].web_url);
+            console.log(res.response.docs[0].multimedia[1].legacy.xlarge);
+
+            // console.log(res.response.docs[3].web_url);
             //image --> res.response.docs[0].multimedia[0]
             // web url [read more] --> res.response.docs[0].web_url;
             //title
