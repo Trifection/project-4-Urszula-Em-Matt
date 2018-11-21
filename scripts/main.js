@@ -3,6 +3,8 @@
 
 const newsApp = {};
 newsApp.apiKey = `4135dcf939eb4bae959a26ff87fedc97`;
+const userDate = "20150403";
+
 
 newsApp.getArticle = function(){
         $.ajax({
@@ -15,40 +17,46 @@ newsApp.getArticle = function(){
                 'end_date': `${userDate}`,
             },
         }).then(res => {
-            console.log(res.response.docs); 
+            console.log(res.response.docs[3].web_url);
+            //image --> res.response.docs[0].multimedia[0]
+            // web url [read more] --> res.response.docs[0].web_url;
+            //title
+            //abstract 
+            // $('.main-article-image img').attr('src', '');
         })
-}
+    }
+    
+    newsApp.showArticle = function (article) {
+        article.forEach((news) => {
 
-// const userDate = prompt("on what day were you born?");
+        });
+    }
+
 
 // WEATHER
-newsApp.getWeather = () => {
-    const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
-    let lat =  40.712;
-    let long = -74.006;
-    let time = 746236800;
-    let unit = "?units=ca";
-    // let exclude = "?exclude=currently,flags";
-    let url = `https://api.darksky.net/forecast/${key}/${lat},${long},${time}`; // time machine request
+// newsApp.getWeather = () => {
+//     const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
+//     let lat =  40.712;
+//     let long = -74.006;
+//     let time = 746236800;
+//     let unit = "?units=ca";
+//     // let exclude = "?exclude=currently,flags";
+//     let url = `https://api.darksky.net/forecast/${key}/${lat},${long},${time}`; // time machine request
 
-    // get darksky api data
-    $.ajax({
-        url: url,
-        dataType: 'jsonp',
-    }).then((res) =>{
-        console.log(res);
-    })
-}
+//     // get darksky api data
+//     $.ajax({
+//         url: url,
+//         dataType: 'jsonp',
+//     }).then((res) =>{
+//         console.log(res);
+//     })
+// }
 
 $(function () { // start document ready 
     newsApp.init();
 }); // end of document ready 
 
-
 newsApp.init = function () {
-    // newsApp.getArticle(); 
-    newsApp.getWeather();
+    newsApp.getArticle(); 
+    // newsApp.getWeather()
 }
-
-
-//console.log(res.response.docs[0].headline.main) 

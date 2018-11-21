@@ -9,62 +9,78 @@
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700|Open+Sans:400,700" rel="stylesheet">
 </head>
 <body>
-<div class=wrapper>
-    <header>
-        <div class="header-img-logo">
-            <img src="assets/The_New_York_Times_logo.png" alt="">
-        </div>
-        <p class="website-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id mi elit.
-        Morbi eu leo ligula. Aenean rhoncus auctor dolor id phara.consectetur adipiscing elit. Ingem.</p>
-        <form>
-            <input type="text" name="firstName" required="true" id="year" class="form-input">
-            <input type="text" name="firstName" required="true"id="month" class="form-input">
-            <input type="text" name="firstName" required="true" id="day" class="form-input">
-            <input type="text" name="firstName" required="true" id="category" class="form-input">
-            <button id="btn-submit">Submit</button>
-        </form>
-        <div class="side-articles-container-left">
-            <div class="side-articles-one">
-                <div class="side-article-image">
-                    <img src="assets/filler-2.jpg" alt="">
-                </div>
-                <h3>This is a fake title of an Article and its kind-of longish.</h3>
-        
+    <div class=wrapper>
+        <header>
+            <h1>Welcome to the newspaper of your birth</h1>
+            <div class="header-img-logo">
+                <img src="assets/The_New_York_Times_logo.png" alt="">
             </div>
-            <div class="side-articles-one">
-                <div class="side-article-image">
-                    <img src="assets/filler-2.jpg" alt="">
-                </div>
-                <h3>This is a fake title of an Article and its kind-of longish.</h3>
-            </div>
-        </div>
-
-        <div class="main-article">
-            <div class="main-article-image side-articles-right">
-                <img src="assets/filler.jpg" alt="">
-            </div>
-            <h2>This is a fake title of an Article and its kind-of longish.</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id mi elit.
+            <p class="website-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id mi elit.
             Morbi eu leo ligula. Aenean rhoncus auctor dolor id phara.consectetur adipiscing elit. Ingem.</p>
+        </header> <!--header ends--> 
+        
+    
+        <main> <!-- main begins -->
+            <form> <!-- form begins -->
+                <label for="date" class="visuallyhidden"></label>
+                <input type="date" class="form-input" id="date">
+    
+                <label for="category" class="visuallyhidden"></label>
+                <select name="category" id="category">
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+    
+                <button id="btn-submit">Submit</button>
+            </form> <!-- form ends -->
+            <div class="side-articles-container-left">
+                <article class="side-articles-one">
+                    <div class="side-article-image">
+                    <img src="assets/filler-2.jpg" alt="">
+                </div>
+                <h3>This is a fake title of an Article and its kind-of longish.</h3>
+            </article> <!--end of article top left-->
+
+            <article class="side-articles-one">
+                <div class="side-article-image">
+                    <img src="assets/filler-2.jpg" alt="">
+                </div>
+                <h3>This is a fake title of an Article and its kind-of longish.</h3>
+            </article> <!--end of article bottom left-->
+        </div> <!--end of article container-->
+
+
+        <div class="main-article"> 
+            <article> <!--main article starts-->
+                <div class="main-article-image side-articles-right">
+                    <img src="assets/filler.jpg" alt="">
+                </div>
+                <h3>This is a fake title of an Article and its kind-of longish.</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id mi elit.
+                Morbi eu leo ligula. Aenean rhoncus auctor dolor id phara.consectetur adipiscing elit. Ingem.</p>
+            </article> <!--main article ends-->
         </div>
+
         <div class="side-articles-container-right">
-            <div class="side-articles-one">
+            <article class="side-articles-one">
                 <div class="side-article-image">
                     <img src="assets/filler-2.jpg" alt="">
                 </div>
                 <h3>This is a fake title of an Article and its kind-of longish.</h3>
+            </article>
 
-            </div>
-            <div class="side-articles-one">
+            <article class="side-articles-one">
                 <div class="side-article-image">
                     <img src="assets/filler-2.jpg" alt="">
                 </div>
                 <h3>This is a fake title of an Article and its kind-of longish.</h3>
-            </div>
+            </article>
         </div>
-    </header>
-
-</div>
+    </div>
 
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
     <script src="scripts/main.js"></script>
