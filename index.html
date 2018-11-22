@@ -6,13 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Project 4</title>
     <link rel="stylesheet" href="styles/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700|Open+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700|Open+Sans:400,700"
+     rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=UnifrakturCook:700" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>I'm the website title</h1>
-        <p class="website-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id mi elit.
-            Morbi eu leo ligula. Aenean rhoncus auctor dolor id phara.consectetur adipiscing elit. Ingem.</p>
+        <div class="header-site-logo">
+            <img src="assets/The_New_York_Times_logo.png" alt="nytimes logo">
+        </div>
+        <div class="website-intro-container">
+            <p class="website-intro">Ever wonder what the world was like the day you were born? Well enter your birthday below and we will show it to you. </p>
+        </div>
     </header> 
     
     <main>
@@ -21,15 +26,15 @@
             <input type="date" class="form-input" id="date">
 
             <label for="category" class="form-input visuallyhidden"></label>
-            <select name="category" id="category">
+            <!-- <select name="category" id="category">
                 <option value=""></option>
                 <option value=""></option>
                 <option value=""></option>
                 <option value=""></option>
                 <option value=""></option>
                 <option value=""></option>
-            </select>
-            <button id="btn-submit">Submit</button>
+            </select> -->
+            <button id="btn-submit"><span>Submit Birthday</span></button>
         </form> 
 
         <div class="side-articles-container-left">
