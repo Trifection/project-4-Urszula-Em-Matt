@@ -3,40 +3,67 @@
 
 const newsApp = {};
 newsApp.apiKey = `4135dcf939eb4bae959a26ff87fedc97`;
-const userDate = "20150403";
+
+const year = 2016 // will turn this into a value from the user input button 
+const month = 05 // same as above
+const imagePath = `images/2016/05/01/fashion/weddings/01BARNETTjpg/01BARNETTjpg-articleLarge-v2.jpg`
 
 newsApp.getArticle = $.ajax({
-    url: `https://api.nytimes.com/svc/search/v2/articlesearch.json`,
+    url: `https://api.nytimes.com/svc/archive/v1/${year}/${month}.json`,
     method: 'GET',
-    dataType: 'json',
     data: {
         'api-key': newsApp.apiKey,
-        'begin_date': `${userDate}`,
-        'end_date': `${userDate}`,
-        'fl': `news_desk,web_url,headline,multimedia`,
-        'page': 0,
     },
+    
+})
+    .then(res =>  { 
+    console.log(res.response.docs[3])
+    newsApp.displayResults(res.newsObject) // if we pass an index to the docs[0] we can target a specific article
+
+    // console.log(res.response.docs[0].multimedia[1].legacy.xlarge) // this is the path for the image 
+    // console.log(res.response.docs[0].web_url) // this is the image path for the article 
+    // console.log(res.response.docs[0].pub_date) // this is the exact date of this article pub_date is the key on the object article. 
+
 });
+
+newsApp.displayResults = function (article) {
+    article.forEach((news) => {
+        $('article').append(`
+        <img src = https://www.nytimes.com/${imagePath}>
+        <h2> ${news.headline.main}</h2>
+        <a href = ${news.web_url}>read more</a>
+        `);
+    })
+}
+
+
+
+
+const pubDate = //input from user's form
+
+// pub_date is equal to the exact date of the article published, could do it. 
+
+
     // .then(result1 => { 
     //     console.log('result1', result1);
         // console.log(res.response.docs[0].multimedia[1].legacy.xlarge);
-newsApp.getArticle2 = $.ajax({
-    url: `https://api.nytimes.com/svc/search/v2/articlesearch.json`,
-    method: 'GET',
-    dataType: 'json',
-    data: {
-        'api-key': newsApp.apiKey,
-        'begin_date': `${userDate}`,
-        'end_date': `${userDate}`,
-        'fl': `news_desk,web_url,headline,multimedia`,
-        'page': 1
-    },
-});
+// newsApp.getArticle2 = $.ajax({
+//     url: `https://api.nytimes.com/svc/search/v2/articlesearch.json`,
+//     method: 'GET',
+//     dataType: 'json',
+//     data: {
+//         'api-key': newsApp.apiKey,
+//         'begin_date': `${userDate}`,
+//         'end_date': `${userDate}`,
+//         'fl': `news_desk,web_url,headline,multimedia`,
+//         'page': 1
+//     },
+// });
 
-$.when(newsApp.getArticle, newsApp.getArticle2)
-    .then((...res) => {
-        console.log(res);
-    })
+// $.when(newsApp.getArticle)
+//     .then((...res) => {
+//         console.log(res);
+//     })
 
             // console.log(res.response.docs[3].web_url);
             //image --> res.response.docs[0].multimedia[0]
