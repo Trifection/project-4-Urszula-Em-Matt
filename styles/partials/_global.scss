@@ -97,14 +97,16 @@ form{
 .main-article{
     grid-column: 4 / 10;
     grid-row: 2 / 3;
-    &-image{
+    div{
+        image{
         width:100%;
         height: 345px;
         overflow: hidden;
-        img{
-            //need to revisit this. Images are not centering within div.
-            object-fit: cover;
-            object-position: center center;
+            img{
+                //need to revisit this. Images are not centering within div.
+                object-fit: cover;
+                object-position: center center;
+            }
         }
     }
 }
