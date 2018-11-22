@@ -5,35 +5,57 @@ const newsApp = {};
 newsApp.apiKey = `4135dcf939eb4bae959a26ff87fedc97`;
 const userDate = "20150403";
 
+newsApp.getArticle = $.ajax({
+    url: `https://api.nytimes.com/svc/search/v2/articlesearch.json`,
+    method: 'GET',
+    dataType: 'json',
+    data: {
+        'api-key': newsApp.apiKey,
+        'begin_date': `${userDate}`,
+        'end_date': `${userDate}`,
+        'fl': `news_desk,web_url,headline,multimedia`,
+        'page': 0
+    },
+});
+    // .then(result1 => { 
+    //     console.log('result1', result1);
+        // console.log(res.response.docs[0].multimedia[1].legacy.xlarge);
+newsApp.getArticle2 = $.ajax({
+    url: `https://api.nytimes.com/svc/search/v2/articlesearch.json`,
+    method: 'GET',
+    dataType: 'json',
+    data: {
+        'api-key': newsApp.apiKey,
+        'begin_date': `${userDate}`,
+        'end_date': `${userDate}`,
+        'fl': `news_desk,web_url,headline,multimedia`,
+        'page': 1
+    },
+});
 
-newsApp.getArticle = function(){
-        $.ajax({
-            url: `https://api.nytimes.com/svc/search/v2/articlesearch.json`,
-            method: 'GET',
-            dataType: 'json',
-            data: {
-                'api-key': newsApp.apiKey,
-                'begin_date': `${userDate}`,
-                'end_date': `${userDate}`,
-                'fl': `news_desk,web_url,headline,multimedia` 
-            },
-        }).then(res => {
-            console.log(res.response.docs[0].multimedia[1].legacy.xlarge);
+
+    
+
+        $.when(newsApp.getArticle, newsApp.getArticle2)
+            .then((...res) => {
+                console.log(res);
+            })
+        
+ 
 
             // console.log(res.response.docs[3].web_url);
             //image --> res.response.docs[0].multimedia[0]
             // web url [read more] --> res.response.docs[0].web_url;
             //title
             //abstract 
-            // $('.main-article-image img').attr('src', '');
-        })
-    }
-    
-    newsApp.showArticle = function (article) {
-        article.forEach((news) => {
+             // $('.main-article-image img').attr('src', '');   
 
-        });
-    }
+    
+    // newsApp.showArticle = function (article) {
+    //     article.forEach((news) => {
+
+    //     });
+    // }
 
 
 // WEATHER
@@ -55,11 +77,11 @@ newsApp.getArticle = function(){
 //     })
 // }
 
-$(function () { // start document ready 
+$(function() { // start document ready 
     newsApp.init();
 }); // end of document ready 
 
-newsApp.init = function () {
-    newsApp.getArticle(); 
+newsApp.init = function() {
+    newsApp.getArticle();
     // newsApp.getWeather()
-}
+};
