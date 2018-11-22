@@ -23,13 +23,22 @@ newsApp.getArticle = $.ajax({
     
     const articleTitle = res.response.docs[4]
     console.log('results', results)
+    // console.log(articleTitle.pub_date) 
+
+    const slicedDate = articleTitle.pub_date.slice(0,10);
+    console.log(slicedDate);
+
+     
+
     const filteredResults = results.filter(article => { // so we will get a new array with only the articles that match the exact date, will be stored in the filtered Resutls 
     // then we will be able to add an event listener to the users submit button, and take that date info 
-        
-        // if (article.pub_date ===  ) { // we will need to reference the user's date in this condition
-        //     return article;
-        // }
-    } )
+    
+        if (slicedDate === '2016-05-01') { // we will need to reference the user's date in this condition
+            console.log('date match');
+        } else {
+            console.log('no bueno');
+        }
+    })
 
 });
 
