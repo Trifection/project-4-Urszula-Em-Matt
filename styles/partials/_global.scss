@@ -3,57 +3,100 @@ img{
     display: block;
 }
 
-body{
+header, main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
 
-}
-
-.wrapper{
-    // max-width:1200px;
-    // width:90%;
-    // margin: 0 auto;
 }
 
 
 header{
-    border:5px solid black;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 12fr;
-    grid-gap: 15px;
-
-    .header-img-logo{
+    // grid-template-rows: 1fr 1fr;
+    height: 23vh;
+    
+    .header-site-logo{
         grid-column: 5 / 9;
-        padding: 20px 0 0 0;
+        margin: 0 auto;
+        padding: 15px 0 0 0;
     }
-    .website-intro{
-        text-align:center;
+    .website-intro-container{
+        padding-top: 5px;
         grid-column: 2 / 12;
+        text-align:center;
+        border-bottom: 1px solid lightgrey;
+        border-top: 1px solid lightgrey;
+        p{
+            width: 60%;
+            margin: 0 auto;
+        }
     }
 }
 
+main{
+    padding-top: 20px;
+    grid-template-rows: 1fr 6fr 6fr;
+    height: 75vh;
+}
+
 form{
-    grid-column: 2 / 12;
+    grid-column: 4 / 10;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    // padding: 5px 0;
     .form-input{
+        width:50%;
         border: 1px solid black;
         margin-right:15px;
     }
-    #year, #month, #day, #category, #btn-submit{
-        width: 20%;
-    }
+
     #btn-submit{
+        width:50%;
         background: black;
         color:white;
         border:none;
     }
+    /* Removes the clear button from date inputs */
+    input[type="date"]::-webkit-clear-button {
+        display: none;
+    }
+    
+    /* Removes the spin button */
+    input[type="date"]::-webkit-inner-spin-button { 
+        display: none;
+    }
+    
+    /* Always display the drop down caret */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        color: #2c3e50;
+    }
+    
+    /* A few custom styles for date inputs */
+    input[type="date"] {
+        appearance: none;
+        -webkit-appearance: none;
+        color: rgb(63, 63, 63);
+        font-family: $accentfont;
+        font-size: 1.4rem;
+        border:none;
+        background:rgba(241, 241, 241, 1);
+        padding:5px;
+        display: inline-block !important;
+        visibility: visible !important;
+    }
+    
+    input[type="date"], focus {
+        // color: blue;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+    }
 }
+
 
 .main-article{
     grid-column: 4 / 10;
+    grid-row: 2 / 3;
     &-image{
         width:100%;
         height: 345px;

@@ -1,3 +1,4 @@
+$logofont: 'UnifrakturCook', cursive;
 $accentfont: 'Open Sans', sans-serif;
 $basefont: 'Libre Baskerville', serif;
 
@@ -10,6 +11,25 @@ html{
 h1, h2, h3, h4, p{
     margin:0;
 }
+
+span{
+    text-transform: uppercase;
+    font-family: $accentfont;
+    font-size:1.4rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+
+h1{
+    margin:10px 0;
+    font-family: $basefont;
+    font-size:2.2rem;
+    font-weight: 700;
+    line-height: 1.5;
+
+}
+
 
 h2{
     margin:10px 0;

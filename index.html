@@ -6,66 +6,66 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Project 4</title>
     <link rel="stylesheet" href="styles/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700|Open+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700|Open+Sans:400,700"
+     rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=UnifrakturCook:700" rel="stylesheet">
 </head>
 <body>
-    <div class=wrapper>
-        <header>
-            <h1>Welcome to the newspaper of your birth</h1>
-            <div class="header-img-logo">
-                <img src="assets/The_New_York_Times_logo.png" alt="">
-            </div>
-            <p class="website-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id mi elit.
-            Morbi eu leo ligula. Aenean rhoncus auctor dolor id phara.consectetur adipiscing elit. Ingem.</p>
-        </header> <!--header ends--> 
-        
+    <header>
+        <div class="header-site-logo">
+            <img src="assets/The_New_York_Times_logo.png" alt="nytimes logo">
+        </div>
+        <div class="website-intro-container">
+            <p class="website-intro">Ever wonder what the world was like the day you were born? Well enter your birthday below and we will show it to you. </p>
+        </div>
+    </header> 
     
-        <main> <!-- main begins -->
-            <form> <!-- form begins -->
-                <label for="date" class="visuallyhidden"></label>
-                <input type="date" class="form-input" id="date">
-    
-                <label for="category" class="visuallyhidden"></label>
-                <select name="category" id="category">
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                </select>
-    
-                <button id="btn-submit">Submit</button>
-            </form> <!-- form ends -->
-            <div class="side-articles-container-left">
-                <article class="side-articles-one">
+    <main>
+        <form>
+            <label for="date" class="visuallyhidden"></label>
+            <input type="date" class="form-input" id="date">
+
+            <label for="category" class="form-input visuallyhidden"></label>
+            <!-- <select name="category" id="category">
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+            </select> -->
+            <button id="btn-submit"><span>Submit Birthday</span></button>
+        </form> 
+
+        <div class="side-articles-container-left">
+            <article class="side-articles-one">
                     <div class="side-article-image">
                     <img src="assets/filler-2.jpg" alt="">
                 </div>
                 <h3>This is a fake title of an Article and its kind-of longish.</h3>
-            </article> <!--end of article top left-->
+            </article> 
 
             <article class="side-articles-one">
                 <div class="side-article-image">
                     <img src="assets/filler-2.jpg" alt="">
                 </div>
                 <h3>This is a fake title of an Article and its kind-of longish.</h3>
-            </article> <!--end of article bottom left-->
-        </div> <!--end of article container-->
+            </article>
+        </div>
 
 
         <div class="main-article"> 
-            <article> <!--main article starts-->
+            <article>
                 <div class="main-article-image side-articles-right">
                     <img src="assets/filler.jpg" alt="">
                 </div>
                 <h3>This is a fake title of an Article and its kind-of longish.</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id mi elit.
                 Morbi eu leo ligula. Aenean rhoncus auctor dolor id phara.consectetur adipiscing elit. Ingem.</p>
-            </article> <!--main article ends-->
-        </div>
+            </article>
+        </div> 
 
-        <div class="side-articles-container-right">
+       <div class="side-articles-container-right">
             <article class="side-articles-one">
                 <div class="side-article-image">
                     <img src="assets/filler-2.jpg" alt="">
@@ -80,8 +80,7 @@
                 <h3>This is a fake title of an Article and its kind-of longish.</h3>
             </article>
         </div>
-    </div>
-
+    </main>
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
     <script src="scripts/main.js"></script>
 </body>
