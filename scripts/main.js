@@ -14,11 +14,10 @@ newsApp.getArticle = $.ajax({
     data: {
         'api-key': newsApp.apiKey,
     },
-    
 })
     .then(res =>  { 
-    console.log(res.response.docs[3])
-    newsApp.displayResults(res.newsObject) // if we pass an index to the docs[0] we can target a specific article
+    const results = res.response.docs[4];
+    newsApp.displayResults(results); // if we pass an index to the docs[0] we can target a specific article
 
     // console.log(res.response.docs[0].multimedia[1].legacy.xlarge) // this is the path for the image 
     // console.log(res.response.docs[0].web_url) // this is the image path for the article 
@@ -26,15 +25,18 @@ newsApp.getArticle = $.ajax({
 
 });
 
-newsApp.displayResults = function (article) {
-    article.forEach((news) => {
+newsApp.displayResults = (article) => {
+    console.log(article);
+
         $('article').append(`
         <img src = https://www.nytimes.com/${imagePath}>
-        <h2> ${news.headline.main}</h2>
-        <a href = ${news.web_url}>read more</a>
+        <h2> </h2>
+        <a href = $>read more</a>
         `);
-    })
+
 }
+
+
 
 
 
