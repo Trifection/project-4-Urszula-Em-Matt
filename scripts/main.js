@@ -7,6 +7,7 @@ newsApp.apiKey = `4135dcf939eb4bae959a26ff87fedc97`;
 const year = 2016 // will turn this into a value from the user input button 
 const month = 05 // same as above
 const imagePath = `images/2016/05/01/fashion/weddings/01BARNETTjpg/01BARNETTjpg-articleLarge-v2.jpg`
+const articleTitle = 'a perfect title';
 
 newsApp.getArticle = $.ajax({
     url: `https://api.nytimes.com/svc/archive/v1/${year}/${month}.json`,
@@ -16,28 +17,36 @@ newsApp.getArticle = $.ajax({
     },
 })
     .then(res =>  { 
-    const results = res.response.docs[4];
-    newsApp.displayResults(results); // if we pass an index to the docs[0] we can target a specific article
-
+    const results = res.response.docs;
+    newsApp.displayResults(results[4]); // if we pass an index to the docs[0] we can target a specific article
+    
+    const articleTitle = res.response.docs[4]
+    console.log('results', results)
     // console.log(res.response.docs[0].multimedia[1].legacy.xlarge) // this is the path for the image 
     // console.log(res.response.docs[0].web_url) // this is the image path for the article 
     // console.log(res.response.docs[0].pub_date) // this is the exact date of this article pub_date is the key on the object article. 
+    const filteredResults = results.filter(article => { // so we will get a new array with only the articles that match the exact date, will be stored in the filtered Resutls 
+    // then we will be able to add an event listener to the users submit button, and take that date info 
+        
+        if (article.pub_date === 0 ) { // we will need to reference the user's date in this condition
+            return article;
+        }
+    } )
 
 });
 
 newsApp.displayResults = (article) => {
     console.log(article);
-
         $('article').append(`
-        <img src = https://www.nytimes.com/${imagePath}>
-        <h2> </h2>
-        <a href = $>read more</a>
+            <div>
+            <img src = https://www.nytimes.com/${imagePath}>
+            </div>
+            <h3>${article.headline.main}</h3>
+            <a href =${article.web_url} $>read more</a>
         `);
-
 }
 
-
-
+// take a specifc date 
 
 
 
