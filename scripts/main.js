@@ -8,6 +8,7 @@ const year = 2016 // will turn this into a value from the user input button
 const month = 05 // same as above
 const imagePath = `images/2016/05/01/fashion/weddings/01BARNETTjpg/01BARNETTjpg-articleLarge-v2.jpg`
 const articleTitle = 'a perfect title';
+const targetDate = 20140608;
 
 newsApp.getArticle = $.ajax({
     url: `https://api.nytimes.com/svc/archive/v1/${year}/${month}.json`,
@@ -22,21 +23,27 @@ newsApp.getArticle = $.ajax({
     
     const articleTitle = res.response.docs[4]
     console.log('results', results)
-    // console.log(res.response.docs[0].multimedia[1].legacy.xlarge) // this is the path for the image 
-    // console.log(res.response.docs[0].web_url) // this is the image path for the article 
-    // console.log(res.response.docs[0].pub_date) // this is the exact date of this article pub_date is the key on the object article. 
+    // console.log(articleTitle.pub_date) 
+
+    const slicedDate = articleTitle.pub_date.slice(0,10);
+    console.log(slicedDate);
+
+     
+
     const filteredResults = results.filter(article => { // so we will get a new array with only the articles that match the exact date, will be stored in the filtered Resutls 
     // then we will be able to add an event listener to the users submit button, and take that date info 
-        
-        if (article.pub_date === 0 ) { // we will need to reference the user's date in this condition
-            return article;
+    
+        if (slicedDate === '2016-05-01') { // we will need to reference the user's date in this condition
+            console.log('date match');
+        } else {
+            console.log('no bueno');
         }
-    } )
+    })
 
 });
 
 newsApp.displayResults = (article) => {
-    console.log(article);
+    // console.log(article);
         $('article').append(`
             <div>
             <img src = https://www.nytimes.com/${imagePath}>
@@ -44,13 +51,21 @@ newsApp.displayResults = (article) => {
             <h3>${article.headline.main}</h3>
             <a href =${article.web_url} $>read more</a>
         `);
+};
+
+newsApp.listenForChange = function (){
+    $('#btn-submit').on('click', function(event){
+        event.preventDefault();
+        const userDate = $('#date').val();
+        console.log(userDate);
+    })    
+
 }
 
 // take a specifc date 
 
 
 
-const pubDate = //input from user's form
 
 // pub_date is equal to the exact date of the article published, could do it. 
 
@@ -116,6 +131,12 @@ $(function() { // start document ready
 
 newsApp.init = function() {
     newsApp.getArticle;
-    newsApp.getArticle2;
+    newsApp.listenForChange()
     // newsApp.getWeather()
 };
+
+
+
+    // console.log(res.response.docs[0].multimedia[1].legacy.xlarge) // this is the path for the image 
+    // console.log(res.response.docs[0].web_url) // this is the image path for the article 
+    // console.log(res.response.docs[0].pub_date) // this is the exact date of this article pub_date is the key on the object article. 
