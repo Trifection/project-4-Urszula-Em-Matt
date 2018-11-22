@@ -14,7 +14,7 @@ newsApp.getArticle = $.ajax({
         'begin_date': `${userDate}`,
         'end_date': `${userDate}`,
         'fl': `news_desk,web_url,headline,multimedia`,
-        'page': 0
+        'page': 0,
     },
 });
     // .then(result1 => { 
@@ -33,15 +33,10 @@ newsApp.getArticle2 = $.ajax({
     },
 });
 
-
-    
-
-        $.when(newsApp.getArticle, newsApp.getArticle2)
-            .then((...res) => {
-                console.log(res);
-            })
-        
- 
+$.when(newsApp.getArticle, newsApp.getArticle2)
+    .then((...res) => {
+        console.log(res);
+    })
 
             // console.log(res.response.docs[3].web_url);
             //image --> res.response.docs[0].multimedia[0]
@@ -82,6 +77,7 @@ $(function() { // start document ready
 }); // end of document ready 
 
 newsApp.init = function() {
-    newsApp.getArticle();
+    newsApp.getArticle;
+    newsApp.getArticle2;
     // newsApp.getWeather()
 };
