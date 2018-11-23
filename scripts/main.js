@@ -19,7 +19,7 @@ newsApp.getArticle = (month, year) => {
         },
     }).then(res => {
         const results = res.response.docs;
-        console.log(results)
+        // console.log(results)
         newsApp.filterResults(results)
     });
 };
@@ -28,35 +28,44 @@ newsApp.getArticle = (month, year) => {
 newsApp.filterResults = (results) => {
     const filteredByDay = results.filter((article) => {
 
-        
-        // const articleDay = article.pub_date.slice(8,2);
-
-        // var str = article.pub_date;
-        // str.replace("-", ' ');
-        // console.log('hi', str);
-
-
         const str = article.pub_date.replace(/-/g, ' '); //turn dashes into whitespace
         const splitString = str.split(" "); //splice the pub into array by whitespace
-        const sliceString = splitString[2].slice(0,2); //the date in now in the second object. We want to slice off the extra shit and just use the first two numbers
+        const sliceString = splitString[2].slice(0,2); //the date is now in the second object, "slice" just use the first two numbers.
 
-        console.log(article.pub_date);
-        console.log("this is the date bitches!", sliceString);
-        
+        // article.pubDate = sliceString;
 
-        // if (['pub_date'].includes('22')) { //trying to filter by day
-        // }
+        if (newsApp.userSelectedDay == sliceString) {
+            return newsApp.filterResults;
 
-
-        //     //pub_date: "2018-10-02T22:53:47+0000"
+        }
+          
     });
+    // console.log(filteredByDay);
     
+    // let index = 0
+    // let index = Math.floor(Math.random() * filteredByDay.length -1);
+    // // index++;
+    for (let i = 0; i < 5; i++) {
+        //get a random number between 0 and the filteredByDay.length -1
+        let count = 0;
+        for (let j=0; j < Math.floor(Math.random() * filteredByDay.length); j++) {
+            count++;
+        }
+        console.log(filteredByDay);
+    
+    }
+    // console.log(filteredByDay[index]);
+}
+        
+        
+        // then take that number and find the object which is at that index value 
+        // the splice that object out of the array 
+        // push into an new array or put it on page
 
     // NEXT STEPS 
-    // figure out how to filter by day
-    //pass data from filter method to displayResults
+    // ffilteredByDay is an ARRAY of article objects. 
+    // pass data from filter method to displayResults
     // for each loop in the display results will append to the dom
-}
 
 newsApp.displayResults = (article) => {
     // console.log(article);
@@ -69,9 +78,29 @@ newsApp.displayResults = (article) => {
         `);
 };
 
+// let day, month, year;
+// let date = new Date($('#date').val());
+// day = date.getDate() + 1;
+// // console.log(day); //removed the day from the function because we couldnt access the information otherwise. If works on refresh for some reason but not on initial.
+
+// function getVal(){
+//     day = date.getDate() + 1;
+//     month = date.getMonth() + 1;
+//     year = date.getFullYear();
+//     // newsApp.userSelectedDay = day;
+//     console.log(year, month, day)
+//     newsApp.getArticle(month, year);
+// }
+
+// let day, month, year;
+// let date = new Date($('#date').val());
+// day = date.getDate() + 1;
+
+
 newsApp.listenForChange = function () {
     $('#btn-submit').on('click', function (event) {
         event.preventDefault();
+        // getVal();
         // Dont remove the +1 from the month/day, it will break the API call!!!!!!!!
         let day, month, year;
         let date = new Date($('#date').val());
@@ -81,10 +110,10 @@ newsApp.listenForChange = function () {
         newsApp.userSelectedDay = day;
         console.log(year, month, day)
         newsApp.getArticle(month, year);
+        
     });
-
     newsApp.getArticle();
-    // console.log(nuserDate);
+
 };
 
 
