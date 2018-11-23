@@ -1,6 +1,3 @@
-
-//this is where i tried to structure the request in the same way we did it in class yesteday, however it was giving a "same origin policy" error
-
 const newsApp = {};
 newsApp.apiKey = `4135dcf939eb4bae959a26ff87fedc97`;
 
@@ -13,7 +10,7 @@ newsApp.getArticle = (month, year) => {
         },
     }).then(res => {
         const results = res.response.docs;
-        // console.log(results)
+        console.log(results)
         newsApp.filterResults(results)
     });
 };
@@ -38,27 +35,23 @@ newsApp.filterResults = (results) => {
 
         const randomNewsObject = filteredByDay.splice(randomNumber, 1);
         // console.log(randomNewsObject);
-        newsApp.displayResults(randomNewsObject);
+        newsApp.displayResults(randomNewsObject[0], i); //added the index to pass to the displayResults 
     }
 }
 
-// NEXT STEPS 
-// ffilteredByDay is an ARRAY of article objects. 
-// pass data from filter method to displayResults
-// for each loop in the display results will append to the dom
 
-newsApp.displayResults = (article) => {
-    console.log('article', article);
-    article.forEach(function (newsArticle) {
-        // console.log('newsArticle', newsArticle);
-        $('article').append(`
+newsApp.displayResults = (newsArticle, indexOf) => {
+    // console.log(randomNewsObject)
+    console.log(`https://www.nytimes.com/${newsArticle.multimedia[0].url}`)
+
+        $(`article[data-location=${indexOf}]`).append(`
                 <div>
-                <img src = https://www.nytimes.com/${newsArticle.web_url}>
+                <img src = https://www.nytimes.com/${newsArticle.multimedia[0].url}>
                 </div>
                 <h3>${newsArticle.headline.main}</h3>
-                <a href =${newsArticlegit.web_url} $>read more</a>
+                <a href =${newsArticle.web_url} $>read more</a>
             `);
-    })
+   
 };
 
 newsApp.listenForChange = function () {
