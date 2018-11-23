@@ -46,15 +46,13 @@ newsApp.filterResults = (results) => {
     // let index = Math.floor(Math.random() * filteredByDay.length -1);
     // // index++;
     for (let i = 0; i < 5; i++) {
-        //get a random number between 0 and the filteredByDay.length -1
-        let count = 0;
-        for (let j=0; j < Math.floor(Math.random() * filteredByDay.length); j++) {
-            count++;
-        }
-        console.log(filteredByDay);
-    
+        const randomNumber = Math.floor(Math.random() * filteredByDay.length -1)
+        console.log(randomNumber)
+
+       const randomNewsObject = filteredByDay.splice(randomNumber, 1);
+       console.log(randomNewsObject);
     }
-    // console.log(filteredByDay[index]);
+   
 }
         
         
