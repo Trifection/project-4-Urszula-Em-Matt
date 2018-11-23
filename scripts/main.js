@@ -28,7 +28,6 @@ newsApp.filterResults = (results) => {
 
         if (newsApp.userSelectedDay == sliceString) {
             return newsApp.filterResults;
-
         }
 
     });
@@ -38,7 +37,8 @@ newsApp.filterResults = (results) => {
         console.log(randomNumber)
 
         const randomNewsObject = filteredByDay.splice(randomNumber, 1);
-        console.log(randomNewsObject);
+        // console.log(randomNewsObject);
+        newsApp.displayResults(randomNewsObject);
     }
 }
 
@@ -48,14 +48,14 @@ newsApp.filterResults = (results) => {
 // for each loop in the display results will append to the dom
 
 newsApp.displayResults = (article) => {
-    // console.log(article);
-    $('article').append(`
-            <div>
-            <img src = https://www.nytimes.com/${imagePath}>
-            </div>
-            <h3>${article.headline.main}</h3>
-            <a href =${article.web_url} $>read more</a>
-        `);
+    console.log(article);
+    // $('article').append(`
+    //         <div>
+    //         <img src = https://www.nytimes.com/${imagePath}>
+    //         </div>
+    //         <h3>${article.headline.main}</h3>
+    //         <a href =${article.web_url} $>read more</a>
+    //     `);
 };
 
 newsApp.listenForChange = function () {
