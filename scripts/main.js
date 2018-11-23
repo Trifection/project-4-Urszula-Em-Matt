@@ -5,10 +5,10 @@ const newsApp = {};
 newsApp.apiKey = `4135dcf939eb4bae959a26ff87fedc97`;
 
 // const year = 2016 // will turn this into a value from the user input button 
-const month = 05 // same as above
-const imagePath = `images/2016/05/01/fashion/weddings/01BARNETTjpg/01BARNETTjpg-articleLarge-v2.jpg`
-const articleTitle = 'a perfect title';
-const targetDate = 20140608;
+// const month = 05 // same as above
+// const imagePath = `images/2016/05/01/fashion/weddings/01BARNETTjpg/01BARNETTjpg-articleLarge-v2.jpg`;
+// const articleTitle = 'a perfect title';
+// const targetDate = 20140608;
 
 newsApp.getArticle = (month, year) => {
     $.ajax({
@@ -22,34 +22,35 @@ newsApp.getArticle = (month, year) => {
         console.log(results)
         newsApp.filterResults(results)
     });
-}
+};
 
-// $.ajax({
-//     url: `https://api.nytimes.com/svc/archive/v1/2016/05.json`,
-//     method: 'GET',
-//     data: {
-//         'api-key': newsApp.apiKey,
-//     },
-// }).then(res => {
-//     const results = res.response.docs;
-//     console.log(results)
-//     newsApp.slicedDate = results.pub_date.slice(0, 10);
-//     newsApp.filteredResults(results)
-// });
 
 newsApp.filterResults = (results) => {
     const filteredByDay = results.filter((article) => {
-        console.log(article)
-        // (\A[^ -] + -[^ -] + -[^ -])
-        if (['pub_date'].includes('22')) { //trying to filter by day
-            return true;
-        }
+
+        
+        // const articleDay = article.pub_date.slice(8,2);
+
+        // var str = article.pub_date;
+        // str.replace("-", ' ');
+        // console.log('hi', str);
+
+
+        const str = article.pub_date.replace(/-/g, ' '); //turn dashes into whitespace
+        const splitString = str.split(" "); //splice the pub into array by whitespace
+        const sliceString = splitString[2].slice(0,2); //the date in now in the second object. We want to slice off the extra shit and just use the first two numbers
+
+        console.log(article.pub_date);
+        console.log("this is the date bitches!", sliceString);
+        
+
+        // if (['pub_date'].includes('22')) { //trying to filter by day
+        // }
+
 
         //     //pub_date: "2018-10-02T22:53:47+0000"
-    }
-    )
-
-    console.log(filteredByDay)
+    });
+    
 
     // NEXT STEPS 
     // figure out how to filter by day
@@ -87,32 +88,8 @@ newsApp.listenForChange = function () {
 };
 
 
-
-
 // pub_date is equal to the exact date of the article published, could do it. 
 
-
-
-
-
-// WEATHER
-// newsApp.getWeather = () => {
-//     const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
-//     let lat =  40.712;
-//     let long = -74.006;
-//     let time = 746236800;
-//     let unit = "?units=ca";
-//     // let exclude = "?exclude=currently,flags";
-//     let url = `https://api.darksky.net/forecast/${key}/${lat},${long},${time}`; // time machine request
-
-//     // get darksky api data
-//     $.ajax({
-//         url: url,
-//         dataType: 'jsonp',
-//     }).then((res) =>{
-//         console.log(res);
-//     })
-// }
 
 $(function () { // start document ready 
     newsApp.init();
@@ -122,4 +99,30 @@ newsApp.init = function () {
     newsApp.getArticle();
     newsApp.listenForChange()
     // newsApp.getWeather()
+
+
+
+
+
+
+
+    
+    // WEATHER
+    // newsApp.getWeather = () => {
+    //     const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
+    //     let lat =  40.712;
+    //     let long = -74.006;
+    //     let time = 746236800;
+    //     let unit = "?units=ca";
+    //     // let exclude = "?exclude=currently,flags";
+    //     let url = `https://api.darksky.net/forecast/${key}/${lat},${long},${time}`; // time machine request
+    
+    //     // get darksky api data
+    //     $.ajax({
+    //         url: url,
+    //         dataType: 'jsonp',
+    //     }).then((res) =>{
+    //         console.log(res);
+    //     })
+    // }
 }; 
