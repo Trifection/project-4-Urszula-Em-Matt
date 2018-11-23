@@ -48,14 +48,17 @@ newsApp.filterResults = (results) => {
 // for each loop in the display results will append to the dom
 
 newsApp.displayResults = (article) => {
-    console.log(article);
-    // $('article').append(`
-    //         <div>
-    //         <img src = https://www.nytimes.com/${imagePath}>
-    //         </div>
-    //         <h3>${article.headline.main}</h3>
-    //         <a href =${article.web_url} $>read more</a>
-    //     `);
+    console.log('article', article);
+    article.forEach(function (newsArticle) {
+        // console.log('newsArticle', newsArticle);
+        $('article').append(`
+                <div>
+                <img src = https://www.nytimes.com/${newsArticle.web_url}>
+                </div>
+                <h3>${newsArticle.headline.main}</h3>
+                <a href =${newsArticlegit.web_url} $>read more</a>
+            `);
+    })
 };
 
 newsApp.listenForChange = function () {
