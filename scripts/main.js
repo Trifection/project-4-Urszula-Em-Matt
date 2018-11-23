@@ -10,41 +10,51 @@ const imagePath = `images/2016/05/01/fashion/weddings/01BARNETTjpg/01BARNETTjpg-
 const articleTitle = 'a perfect title';
 const targetDate = 20140608;
 
-newsApp.getArticle = $.ajax({
-    url: `https://api.nytimes.com/svc/archive/v1/${year}/${month}.json`,
-    method: 'GET',
-    data: {
-        'api-key': newsApp.apiKey,
-    },
-})
-    .then(res =>  { 
-    const results = res.response.docs;
-    newsApp.displayResults(results[4]); // if we pass an index to the docs[0] we can target a specific article
-    
-    const articleTitle = res.response.docs[4]
-    console.log('results', results)
-    // console.log(articleTitle.pub_date) 
+newsApp.getArticle = () => {
+    $.ajax({
+        url: `https://api.nytimes.com/svc/archive/v1/2016/5.json`,
+        method: 'GET',
+        data: {
+            'api-key': newsApp.apiKey,
+        },
+    }).then(res => {
+        const results = res.response.docs;
+        console.log(results)
+        newsApp.slicedDate = results.pub_date.slice(0, 10);
+        newsApp.filteredResults(results)
+    });
+}
 
-    const slicedDate = articleTitle.pub_date.slice(0,10);
-    console.log(slicedDate);
 
-     
 
-    const filteredResults = results.filter(article => { // so we will get a new array with only the articles that match the exact date, will be stored in the filtered Resutls 
-    // then we will be able to add an event listener to the users submit button, and take that date info 
-    
-        if (slicedDate === '2016-05-01') { // we will need to reference the user's date in this condition
-            console.log('date match');
-        } else {
-            console.log('no bueno');
+// $.ajax({
+//     url: `https://api.nytimes.com/svc/archive/v1/2016/05.json`,
+//     method: 'GET',
+//     data: {
+//         'api-key': newsApp.apiKey,
+//     },
+// }).then(res => {
+//     const results = res.response.docs;
+//     console.log(results)
+//     newsApp.slicedDate = results.pub_date.slice(0, 10);
+//     newsApp.filteredResults(results)
+// });
+
+newsApp.filteredResults = (results) => {
+    results.filter((article) => {
+        if (article.userDate === article.newsApp.slicedDate) {
+            return true;
         }
-    })
 
-});
+    }
+    )
+}
+
+
 
 newsApp.displayResults = (article) => {
     // console.log(article);
-        $('article').append(`
+    $('article').append(`
             <div>
             <img src = https://www.nytimes.com/${imagePath}>
             </div>
@@ -53,57 +63,21 @@ newsApp.displayResults = (article) => {
         `);
 };
 
-newsApp.listenForChange = function (){
-    $('#btn-submit').on('click', function(event){
+newsApp.listenForChange = function () {
+    $('#btn-submit').on('click', function (event) {
         event.preventDefault();
-        const userDate = $('#date').val();
-        console.log(userDate);
-    })    
+        newsApp.userDate = $('#date').val();
+        newsApp.getArticle();
+        // console.log(nuserDate);
+    })
 
 }
-
-// take a specifc date 
-
-
 
 
 // pub_date is equal to the exact date of the article published, could do it. 
 
 
-    // .then(result1 => { 
-    //     console.log('result1', result1);
-        // console.log(res.response.docs[0].multimedia[1].legacy.xlarge);
-// newsApp.getArticle2 = $.ajax({
-//     url: `https://api.nytimes.com/svc/search/v2/articlesearch.json`,
-//     method: 'GET',
-//     dataType: 'json',
-//     data: {
-//         'api-key': newsApp.apiKey,
-//         'begin_date': `${userDate}`,
-//         'end_date': `${userDate}`,
-//         'fl': `news_desk,web_url,headline,multimedia`,
-//         'page': 1
-//     },
-// });
 
-// $.when(newsApp.getArticle)
-//     .then((...res) => {
-//         console.log(res);
-//     })
-
-            // console.log(res.response.docs[3].web_url);
-            //image --> res.response.docs[0].multimedia[0]
-            // web url [read more] --> res.response.docs[0].web_url;
-            //title
-            //abstract 
-             // $('.main-article-image img').attr('src', '');   
-
-    
-    // newsApp.showArticle = function (article) {
-    //     article.forEach((news) => {
-
-    //     });
-    // }
 
 
 // WEATHER
@@ -125,18 +99,12 @@ newsApp.listenForChange = function (){
 //     })
 // }
 
-$(function() { // start document ready 
+$(function () { // start document ready 
     newsApp.init();
 }); // end of document ready 
 
-newsApp.init = function() {
-    newsApp.getArticle;
+newsApp.init = function () {
+    // newsApp.getArticle();
     newsApp.listenForChange()
     // newsApp.getWeather()
-};
-
-
-
-    // console.log(res.response.docs[0].multimedia[1].legacy.xlarge) // this is the path for the image 
-    // console.log(res.response.docs[0].web_url) // this is the image path for the article 
-    // console.log(res.response.docs[0].pub_date) // this is the exact date of this article pub_date is the key on the object article. 
+}; 
