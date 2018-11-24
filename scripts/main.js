@@ -18,7 +18,6 @@ newsApp.getArticle = (month, year) => {
 
 newsApp.filterResults = (results) => {
 
-
     const filteredByDay = results.filter((article) => {
 
         const str = article.pub_date.replace(/-/g, ' '); //turn dashes into whitespace
@@ -90,10 +89,28 @@ newsApp.listenForChange = function () {
 };
 
 newsApp.displayUserDate = function (year, month, day) {
-    $('#displayDate').text(`Today is ${month} ${day}, ${year}`)
-    // console.log(`Today is ${year}${month}${day}`);
+    const months = [];
+    months[1] = "January";
+    months[2] = "February";
+    months[3] = "March";
+    months[4] = "April";
+    months[5] = "May";
+    months[6] = "June";
+    months[7] = "July";
+    months[8] = "August";
+    months[9] = "September";
+    months[10] = "October";
+    months[11] = "November";
+    months[12] = "December";
+
+    monthWord = months[month];
+    $('#displayDate').text(`Today is ${monthWord} ${day}, ${year}`)
 }
 
+newsApp.convertWeather = function(weatherDate){
+    weatherDate.getTime();
+    console.log(weatherDate)
+}
 
 $(function () { // start document ready 
     newsApp.init();
@@ -102,23 +119,25 @@ $(function () { // start document ready
 newsApp.init = function () {
     newsApp.getArticle();
     newsApp.listenForChange();
-    // newsApp.getWeather()
+    newsApp.getWeather();
 };
-// WEATHER
-// newsApp.getWeather = () => {
-//     const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
-//     let lat =  40.712;
-//     let long = -74.006;
-//     let time = 746236800;
-//     let unit = "?units=ca";
-//     // let exclude = "?exclude=currently,flags";
-//     let url = `https://api.darksky.net/forecast/${key}/${lat},${long},${time}`; // time machine request
 
-//     // get darksky api data
-//     $.ajax({
-//         url: url,
-//         dataType: 'jsonp',
-//     }).then((res) =>{
-//         console.log(res);
-//     })
-// }
+// WEATHER
+newsApp.getWeather = () => {
+    const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
+    let lat =  40.712;
+    let long = -74.006;
+    let time = 746236800;
+    let unit = "?units=ca";
+    // let exclude = "?exclude=currently,flags";
+    let url = `https://api.darksky.net/forecast/${key}/${lat},${long},${time}`; // time machine request
+
+    // get darksky api data
+    $.ajax({
+        url: url,
+        dataType: 'jsonp',
+    }).then((res) =>{
+        newsApp.theWeather = res;
+        // console.log(newsApp.theWeather)
+    })
+}
