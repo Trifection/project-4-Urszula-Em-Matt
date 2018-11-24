@@ -17,28 +17,28 @@ newsApp.getArticle = (month, year) => {
 
 
 newsApp.filterResults = (results) => {
+
+
     const filteredByDay = results.filter((article) => {
 
         const str = article.pub_date.replace(/-/g, ' '); //turn dashes into whitespace
         const splitString = str.split(" "); //splice the pub into array by whitespace
         const sliceString = splitString[2].slice(0, 2); //the date is now in the second object, "slice" just use the first two numbers.
 
-        if (newsApp.userSelectedDay == sliceString) {
+        if ((newsApp.userSelectedDay == sliceString) && (results.snippet !== null)) {
+            console.log("good job");
             return newsApp.filterResults;
         }
-
     });
 
     for (let i = 0; i < 5; i++) {
         const randomNumber = Math.floor(Math.random() * filteredByDay.length - 1)
-        console.log(randomNumber)
 
         const randomNewsObject = filteredByDay.splice(randomNumber, 1);
         // console.log(randomNewsObject);
         newsApp.displayResults(randomNewsObject[0], i); //added the index to pass to the displayResults 
     }
 }
-
 
 newsApp.displayResults = (newsArticle, indexOf) => {
     // console.log(randomNewsObject)
@@ -47,17 +47,6 @@ newsApp.displayResults = (newsArticle, indexOf) => {
         $(`article[data-location=${indexOf}]`).empty();
 
         let userContent = newsArticle.snippet;
-
-        if (newsArticle.snippet === null ) {
-            userContent = newsArticle.lead_paragraph;
-            console.log("the snippet is null")
-        } 
-
-        if ((newsArticle.lead_paragraph === null) && (newsArticle.snippet === null)) {
-            userContent = newsArticle.abstract;
-            console.log("the snippet AND lead paragraph is null")
-        } 
-
 
         $(`article[data-location=${indexOf}]`).append(`
                 <div>
