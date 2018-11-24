@@ -79,11 +79,17 @@ newsApp.listenForChange = function () {
         month = date.getMonth() + 1;
         year = date.getFullYear();
         newsApp.userSelectedDay = day;
-        console.log(year, month, day)
+        console.log(year, month, day);
         newsApp.getArticle(month, year);
+        newsApp.displayUserDate(year, month, day);
     });
     newsApp.getArticle();
 };
+
+newsApp.displayUserDate = function (year, month, day) {
+    $('#displayDate').text(`Today is ${month} ${day}, ${year}`)
+    // console.log(`Today is ${year}${month}${day}`);
+}
 
 
 $(function () { // start document ready 
@@ -92,7 +98,7 @@ $(function () { // start document ready
 
 newsApp.init = function () {
     newsApp.getArticle();
-    newsApp.listenForChange()
+    newsApp.listenForChange();
     // newsApp.getWeather()
 };
 // WEATHER
