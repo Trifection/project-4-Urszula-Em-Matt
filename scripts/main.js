@@ -65,7 +65,10 @@ newsApp.displayResults = (newsArticle, indexOf, res) => {
 // document.getElementById('datePicker').value = new Date().toDateInputValue();
 
 newsApp.convertToUnix = (year, month, day) => {
- const convertedTime = //math to convert to unix;
+newsApp.unixDate = `${year}-${month}-${day}`;
+console.log("here", newsApp.unixDate);
+ const convertedTime = newsApp.unixDate.getTime()/1000;
+ console.log(convertedTime)
  newsApp.getWeather(convertedTime);
 }
 
