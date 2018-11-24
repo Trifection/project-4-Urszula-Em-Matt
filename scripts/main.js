@@ -47,9 +47,9 @@ newsApp.displayResults = (newsArticle, indexOf, res) => {
 
         $(`article[data-location=${indexOf}]`).append(`
                 <div>
+                <h2>${newsArticle.headline.main}</h2>
                 <p> ${userContent}</p>
                 </div>
-                <h3>${newsArticle.headline.main}</h3>
                 <a href =${newsArticle.web_url} $>read more</a>
             `);
 };
@@ -142,8 +142,8 @@ newsApp.getWeather = async (myTime) => {
 
         $('.weather-results').empty();
         $('.weather-results').append(`
-        <h1>${res.hourly.summary}</h1>
         <p> ${res.hourly.icon} </p>
+        <h1>${res.hourly.summary}</h1>
         `);
         
         var icons = new Skycons(),
