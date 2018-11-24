@@ -140,6 +140,7 @@ newsApp.getWeather = async (myTime) => {
         url: url,
         dataType: 'jsonp',
     }).then((res) => {
+        $('.weather-results').empty();
         $('.weather-results').append(`<h1>${res.hourly.summary}</h1>`);
     })
 }
