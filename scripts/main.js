@@ -24,7 +24,6 @@ newsApp.filterResults = (results, weather) => {
         const sliceString = splitString[2].slice(0, 2); //the date is now in the second object, "slice" just use the first two numbers.
 
         if ((newsApp.userSelectedDay == sliceString) && (results.snippet !== null)) {
-            console.log("good job");
             return newsApp.filterResults;
         }
     });
@@ -140,7 +139,23 @@ newsApp.getWeather = async (myTime) => {
         url: url,
         dataType: 'jsonp',
     }).then((res) => {
+
         $('.weather-results').empty();
-        $('.weather-results').append(`<h1>${res.hourly.summary}</h1>`);
+        $('.weather-results').append(`
+        <h1>${res.hourly.summary}</h1>
+        <p> ${res.hourly.icon} </p>
+        `);
+        
+        var icons = new Skycons(),
+            list = [
+                "clear-day", "clear-night", "partly-cloudy-day",
+                "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+                "fog"
+            ],
+            i;
+        for (i = list.length; i--;)
+            icons.set(list[i], list[i]);
+        icons.play();
     })
 }
+    
