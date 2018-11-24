@@ -46,9 +46,22 @@ newsApp.displayResults = (newsArticle, indexOf) => {
 
         $(`article[data-location=${indexOf}]`).empty();
 
+        let userContent = newsArticle.snippet;
+
+        if (newsArticle.snippet === null ) {
+            userContent = newsArticle.lead_paragraph;
+            console.log("the snippet is null")
+        } 
+
+        if ((newsArticle.lead_paragraph === null) && (newsArticle.snippet === null)) {
+            userContent = newsArticle.abstract;
+            console.log("the snippet AND lead paragraph is null")
+        } 
+
+
         $(`article[data-location=${indexOf}]`).append(`
                 <div>
-                <img src = https://www.nytimes.com/${newsArticle.multimedia[0].url}>
+                <p> ${userContent}</p>
                 </div>
                 <h3>${newsArticle.headline.main}</h3>
                 <a href =${newsArticle.web_url} $>read more</a>
@@ -56,6 +69,7 @@ newsApp.displayResults = (newsArticle, indexOf) => {
    
 };
 
+// <img src = https://www.nytimes.com/${newsArticle.multimedia[0].url}>
 // Date.prototype.toDateInputValue = (function () {
 //     var local = new Date(this);
 //     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
