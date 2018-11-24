@@ -10,13 +10,12 @@ newsApp.getArticle = (month, year) => {
         },
     }).then(res => {
         const results = res.response.docs;
-        console.log(results)
         newsApp.filterResults(results)
     });
 };
 
 
-newsApp.filterResults = (results) => {
+newsApp.filterResults = (results, weather) => {
 
     const filteredByDay = results.filter((article) => {
 
@@ -39,7 +38,7 @@ newsApp.filterResults = (results) => {
     }
 }
 
-newsApp.displayResults = (newsArticle, indexOf) => {
+newsApp.displayResults = (newsArticle, indexOf, res) => {
     // console.log(randomNewsObject)
     // console.log(`https://www.nytimes.com/${newsArticle.multimedia[0].url}`)
 
@@ -54,7 +53,6 @@ newsApp.displayResults = (newsArticle, indexOf) => {
                 <h3>${newsArticle.headline.main}</h3>
                 <a href =${newsArticle.web_url} $>read more</a>
             `);
-   
 };
 
 // <img src = https://www.nytimes.com/${newsArticle.multimedia[0].url}>
@@ -66,7 +64,13 @@ newsApp.displayResults = (newsArticle, indexOf) => {
 
 // document.getElementById('datePicker').value = new Date().toDateInputValue();
 
-
+newsApp.convertToUnix = (year, month, day) => {
+newsApp.unixDate = `${year}-${month}-${day}`;
+console.log("here", newsApp.unixDate);
+ const convertedTime = newsApp.unixDate.getTime()/1000;
+ console.log(convertedTime)
+ newsApp.getWeather(convertedTime);
+}
 
 // document.getElementById('datePicker').valueAsDate = new Date();
 
@@ -84,6 +88,7 @@ newsApp.listenForChange = function () {
         console.log(year, month, day);
         newsApp.getArticle(month, year);
         newsApp.displayUserDate(year, month, day);
+        newsApp.convertToUnix(year, month, day);
     });
     newsApp.getArticle();
 };
@@ -119,15 +124,14 @@ $(function () { // start document ready
 newsApp.init = function () {
     newsApp.getArticle();
     newsApp.listenForChange();
-    newsApp.getWeather();
 };
 
 // WEATHER
-newsApp.getWeather = () => {
+newsApp.getWeather = async (myTime) => {
     const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
     let lat =  40.712;
     let long = -74.006;
-    let time = 746236800;
+    let time = myTime;
     let unit = "?units=ca";
     // let exclude = "?exclude=currently,flags";
     let url = `https://api.darksky.net/forecast/${key}/${lat},${long},${time}`; // time machine request
@@ -136,8 +140,7 @@ newsApp.getWeather = () => {
     $.ajax({
         url: url,
         dataType: 'jsonp',
-    }).then((res) =>{
-        newsApp.theWeather = res;
-        // console.log(newsApp.theWeather)
+    }).then((res) => {
+        $('.weather-results').append(`<h1>${res.hourly.summary}</h1>`);
     })
 }
