@@ -42,7 +42,9 @@ newsApp.filterResults = (results) => {
 
 newsApp.displayResults = (newsArticle, indexOf) => {
     // console.log(randomNewsObject)
-    console.log(`https://www.nytimes.com/${newsArticle.multimedia[0].url}`)
+    // console.log(`https://www.nytimes.com/${newsArticle.multimedia[0].url}`)
+
+        $(`article[data-location=${indexOf}]`).empty();
 
         $(`article[data-location=${indexOf}]`).append(`
                 <div>
@@ -53,6 +55,18 @@ newsApp.displayResults = (newsArticle, indexOf) => {
             `);
    
 };
+
+// Date.prototype.toDateInputValue = (function () {
+//     var local = new Date(this);
+//     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+//     return local.toJSON().slice(0, 10);
+// });
+
+// document.getElementById('datePicker').value = new Date().toDateInputValue();
+
+
+
+// document.getElementById('datePicker').valueAsDate = new Date();
 
 newsApp.listenForChange = function () {
     $('#btn-submit').on('click', function (event) {
@@ -70,6 +84,7 @@ newsApp.listenForChange = function () {
     });
     newsApp.getArticle();
 };
+
 
 $(function () { // start document ready 
     newsApp.init();
