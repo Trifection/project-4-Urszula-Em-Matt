@@ -8,7 +8,7 @@ html{
     font-size: 62.5%;
 }
 
-h1, h2, h3, h4, p{
+h1, h2, h3, p{
     margin:0;
 }
 
@@ -22,7 +22,6 @@ span{
 
 
 h1{
-    margin:10px 0;
     font-family: $basefont;
     font-size:2.2rem;
     font-weight: 700;
@@ -32,7 +31,7 @@ h1{
 
 
 h2{
-    margin:10px 0;
+    // margin:10px 0;
     font-family: $basefont;
     font-size:1.8rem;
     font-weight: 700;
@@ -53,4 +52,12 @@ p{
     font-family: $basefont;
     font-size:1.4rem;
     line-height: 1.5;
+}
+
+a{
+    display:block;
+    font-family: $accentfont;
+    font-size:1.4rem;
+    font-weight: 400;
+
 }

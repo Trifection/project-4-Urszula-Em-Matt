@@ -43,10 +43,8 @@ newsApp.displayResults = (newsArticle, indexOf, res) => {
     let userContent = newsArticle.snippet;
 
     $(`article[data-location=${indexOf}]`).append(`
-                <div>
                 <h2>${newsArticle.headline.main}</h2>
                 <p> ${userContent}</p>
-                </div>
                 <a href =${newsArticle.web_url} $>read more</a>
             `);
 };

@@ -154,7 +154,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 html {
   font-size: 62.5%; }
 
-h1, h2, h3, h4, p {
+h1, h2, h3, p {
   margin: 0; }
 
 span {
@@ -165,14 +165,12 @@ span {
   letter-spacing: 2px; }
 
 h1 {
-  margin: 10px 0;
   font-family: "Libre Baskerville", serif;
   font-size: 2.2rem;
   font-weight: 700;
   line-height: 1.5; }
 
 h2 {
-  margin: 10px 0;
   font-family: "Libre Baskerville", serif;
   font-size: 1.8rem;
   font-weight: 700;
@@ -192,6 +190,12 @@ p {
   font-size: 1.4rem;
   line-height: 1.5; }
 
+a {
+  display: block;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400; }
+
 img {
   width: 100%;
   display: block; }
@@ -200,31 +204,6 @@ header, main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 15px; }
-
-.main-section {
-  padding-right: 15px;
-  border-right: 1px solid black;
-  grid-column: 4 / 10;
-  grid-row: 2 / 3; }
-
-.main-section-sub {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row; }
-  .main-section-sub article {
-    width: 50%; }
-
-.side-articles-container-left {
-  padding-right: 15px;
-  border-right: 1px solid black;
-  grid-column: 2 / 4; }
-
-.side-articles-container-right {
-  grid-column: 10 / 12; }
 
 header .header-site-logo {
   grid-column: 5 / 9;
@@ -240,6 +219,42 @@ header .website-intro-container {
   header .website-intro-container p {
     width: 60%;
     margin: 0 auto; }
+
+.main-section {
+  padding-right: 15px;
+  border-right: 1px solid black;
+  grid-column: 4 / 10;
+  grid-row: 2 / 3; }
+
+.main-section-sub {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding-bottom: 15px;
+  border-bottom: 1px solid lightgrey; }
+  .main-section-sub article {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 15px;
+    width: 50%;
+    border-bottom: none; }
+  .main-section-sub article.left {
+    padding-right: 15px;
+    border-right: 1px solid lightgrey; }
+  .main-section-sub article.right {
+    padding-left: 15px; }
+
+.side-articles-container-left {
+  padding-right: 15px;
+  border-right: 1px solid black;
+  grid-column: 2 / 4; }
+
+.side-articles-container-right {
+  grid-column: 10 / 12; }
 
 .form-container {
   grid-column: 2 / 12;
@@ -262,11 +277,11 @@ form {
   /* Always display the drop down caret */
   /* A few custom styles for date inputs */ }
   form .form-input {
-    width: 50%;
-    border: 1px solid black;
-    margin-right: 15px; }
+    width: 30%;
+    margin: 0 15px 0 20%; }
   form #btn-submit {
-    width: 50%;
+    width: 30%;
+    margin-right: calc(15px + 20%);
     background: black;
     color: white;
     border: none; }
@@ -295,7 +310,10 @@ form {
 
 article {
   border-bottom: 1px solid lightgrey;
-  padding-bottom: 15px; }
+  padding: 15px 0; }
+  article a {
+    color: #84858a;
+    padding-top: 5px; }
 
 .weather-results {
   padding: 20px 40px;
