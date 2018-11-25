@@ -111,10 +111,11 @@ newsApp.init = function () {
 
 newsApp.todaysDate = function (){
     let todaysDate = new Date();
-    let displayToday = todaysDate.toSource();
+    let todayDay = todaysDate.getDate();
+    let todayMonth = todaysDate.getMonth();
+    let todayYear = todaysDate.getFullYear();
+    $('.form-input').val(`${todayYear}-${todayMonth}-${todayDay}`)
     console.log(todaysDate);
-    console.log(displayToday);
-
 }
 
 // WEATHER----------------------------------------------------------------------------------------------
