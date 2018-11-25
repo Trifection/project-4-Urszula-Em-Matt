@@ -28,7 +28,7 @@ newsApp.filterResults = (results, weather) => {
         }
     });
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 7; i++) {
         const randomNumber = Math.floor(Math.random() * filteredByDay.length - 1)
 
         const randomNewsObject = filteredByDay.splice(randomNumber, 1);
@@ -58,12 +58,10 @@ newsApp.convertToUnix = (year, month, day) => {
     newsApp.getWeather(convertedTime);
 }
 
-// document.getElementById('datePicker').valueAsDate = new Date();
 
 newsApp.listenForChange = function () {
     $('#btn-submit').on('click', function (event) {
         event.preventDefault();
-        // getVal();
         // Dont remove the +1 from the month/day, it will break the API call!!!!!!!!
         let day, month, year;
         let date = new Date($('#date').val());
@@ -104,6 +102,8 @@ newsApp.convertWeather = function (weatherDate) {
 
 $(function () { // start document ready 
     newsApp.init();
+
+
 }); // end of document ready 
 
 newsApp.init = function () {
@@ -111,7 +111,7 @@ newsApp.init = function () {
     newsApp.listenForChange();
 };
 
-// WEATHER
+// WEATHER----------------------------------------------------------------------------------------------
 newsApp.getWeather = (myTime) => {
     const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
     let lat = 40.712;
