@@ -106,7 +106,16 @@ $(function () { // start document ready
 newsApp.init = function () {
     newsApp.getArticle();
     newsApp.listenForChange();
+    newsApp.todaysDate();
 };
+
+newsApp.todaysDate = function (){
+    let todaysDate = new Date();
+    let displayToday = todaysDate.toSource();
+    console.log(todaysDate);
+    console.log(displayToday);
+
+}
 
 // WEATHER----------------------------------------------------------------------------------------------
 newsApp.getWeather = (myTime) => {
