@@ -24,11 +24,13 @@
     </header>
 
     <main>
-        <form>
-            <label for="date" class="visuallyhidden"></label>
-            <input type="date" class="form-input" id="date">
-            <button id="btn-submit"><span>Submit Birthday</span></button>
-        </form>
+        <div class="form-container">
+            <form>
+                <label for="date" class="visuallyhidden"></label>
+                <input type="date" class="form-input" id="date">
+                <button id="btn-submit"><span>Submit Birthday</span></button>
+            </form>
+        </div>
 
         <div class="side-articles-container-left">
             <article data-location="0">
@@ -39,7 +41,7 @@
         </div>
 
 
-        <div class="main-article">
+        <div class="main-section">
             <div class="weather-results">
                 <figure>
                     <canvas id="icon" width="128" height="128"></canvas>
@@ -47,16 +49,24 @@
             </div>
 
             <article data-location="2">
-
             </article>
+            <div class="main-section-sub">
+                <article data-location="3">
+                </article>
+                <article data-location="4">
+                </article>
+            </div>
+            
+            
+
         </div>
 
         <div class="side-articles-container-right">
-            <article data-location="3">
+            <article data-location="5">
 
             </article>
 
-            <article data-location="4">
+            <article data-location="6">
 
             </article>
         </div>
