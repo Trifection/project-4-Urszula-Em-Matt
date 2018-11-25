@@ -147,17 +147,11 @@ newsApp.printWeather = (weatherInfo) => {
 newsApp.loadSkycons = () => {
     const icons = new Skycons({ "color": "#232323" });
     icons.set("clear-day", Skycons.CLEAR_DAY);
-    icons.set("clear-day 2", Skycons.CLEAR_DAY);
     icons.set("clear-night", Skycons.CLEAR_NIGHT);
-    icons.set("clear-night 2", Skycons.CLEAR_NIGHT);
-    icons.set("partly-cloudy-day", Skycons.PARTLY_CLOUDY_DAY);
-    icons.set("partly-cloudy-day 2", Skycons.PARTLY_CLOUDY_DAY);
+    icons.set("partly-cloudy-day", Skycons.PARTLY_CLOUDY_DAY)
     icons.set("partly-cloudy-night", Skycons.PARTLY_CLOUDY_NIGHT);
-    icons.set("partly-cloudy-night 2", Skycons.PARTLY_CLOUDY_NIGHT);
     icons.set("cloudy", Skycons.CLOUDY);
-    icons.set("cloudy 2", Skycons.CLOUDY);
     icons.set("rain", Skycons.RAIN);
-    icons.set("rain 2", Skycons.RAIN);
     icons.set("sleet", Skycons.SLEET);
     icons.set("snow", Skycons.SNOW);
     icons.set("wind", Skycons.WIND);
