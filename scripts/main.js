@@ -38,14 +38,11 @@ newsApp.filterResults = (results, weather) => {
 }
 
 newsApp.displayResults = (newsArticle, indexOf, res) => {
-    // console.log(randomNewsObject)
-    // console.log(`https://www.nytimes.com/${newsArticle.multimedia[0].url}`)
+    $(`article[data-location=${indexOf}]`).empty();
 
-        $(`article[data-location=${indexOf}]`).empty();
+    let userContent = newsArticle.snippet;
 
-        let userContent = newsArticle.snippet;
-
-        $(`article[data-location=${indexOf}]`).append(`
+    $(`article[data-location=${indexOf}]`).append(`
                 <div>
                 <h2>${newsArticle.headline.main}</h2>
                 <p> ${userContent}</p>
@@ -54,20 +51,11 @@ newsApp.displayResults = (newsArticle, indexOf, res) => {
             `);
 };
 
-// <img src = https://www.nytimes.com/${newsArticle.multimedia[0].url}>
-// Date.prototype.toDateInputValue = (function () {
-//     var local = new Date(this);
-//     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-//     return local.toJSON().slice(0, 10);
-// });
-
-// document.getElementById('datePicker').value = new Date().toDateInputValue();
-
 newsApp.convertToUnix = (year, month, day) => {
-let unixDate = new Date(`${year}-${month}-${day}`);
- const convertedTime = Math.floor(unixDate.getTime() / 1000);
- console.log(convertedTime);
- newsApp.getWeather(convertedTime);
+    let unixDate = new Date(`${year}-${month}-${day}`);
+    const convertedTime = Math.floor(unixDate.getTime() / 1000);
+    // console.log(convertedTime);
+    newsApp.getWeather(convertedTime);
 }
 
 // document.getElementById('datePicker').valueAsDate = new Date();
@@ -83,7 +71,7 @@ newsApp.listenForChange = function () {
         month = date.getMonth() + 1;
         year = date.getFullYear();
         newsApp.userSelectedDay = day;
-        console.log(year, month, day);
+        // console.log(year, month, day);
         newsApp.getArticle(month, year);
         newsApp.displayUserDate(year, month, day);
         newsApp.convertToUnix(year, month, day);
@@ -110,9 +98,8 @@ newsApp.displayUserDate = function (year, month, day) {
     $('#displayDate').text(`Today is ${monthWord} ${day}, ${year}`)
 }
 
-newsApp.convertWeather = function(weatherDate){
+newsApp.convertWeather = function (weatherDate) {
     weatherDate.getTime();
-    console.log(weatherDate)
 }
 
 $(function () { // start document ready 
@@ -125,37 +112,55 @@ newsApp.init = function () {
 };
 
 // WEATHER
-newsApp.getWeather = async (myTime) => {
+newsApp.getWeather = (myTime) => {
     const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
-    let lat =  40.712;
+    let lat = 40.712;
     let long = -74.006;
     let time = myTime;
     let unit = "?units=ca";
     // let exclude = "?exclude=currently,flags";
     let url = `https://api.darksky.net/forecast/${key}/${lat},${long},${time}`; // time machine request
 
+
     // get darksky api data
     $.ajax({
         url: url,
         dataType: 'jsonp',
     }).then((res) => {
-
-        $('.weather-results').empty();
-        $('.weather-results').append(`
-        <p> ${res.hourly.icon} </p>
-        <h1>${res.hourly.summary}</h1>
-        `);
-        
-        var icons = new Skycons(),
-            list = [
-                "clear-day", "clear-night", "partly-cloudy-day",
-                "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-                "fog"
-            ],
-            i;
-        for (i = list.length; i--;)
-            icons.set(list[i], list[i]);
-        icons.play();
-    })
+        const weatherInfo = {
+            icon: res.currently.icon,
+            summary: res.hourly.summary,
+        }
+        newsApp.printWeather(weatherInfo);
+    });
 }
-    
+
+newsApp.printWeather = (weatherInfo) => {
+    $('.weather-results').empty();
+    $(".weather-results").append(`
+    <canvas id="${weatherInfo.icon}" width="80" height="80"></canvas>
+    <h1>${weatherInfo.summary}
+    `);
+    newsApp.loadSkycons();
+}
+
+newsApp.loadSkycons = () => {
+    const icons = new Skycons({ "color": "#232323" });
+    icons.set("clear-day", Skycons.CLEAR_DAY);
+    icons.set("clear-day 2", Skycons.CLEAR_DAY);
+    icons.set("clear-night", Skycons.CLEAR_NIGHT);
+    icons.set("clear-night 2", Skycons.CLEAR_NIGHT);
+    icons.set("partly-cloudy-day", Skycons.PARTLY_CLOUDY_DAY);
+    icons.set("partly-cloudy-day 2", Skycons.PARTLY_CLOUDY_DAY);
+    icons.set("partly-cloudy-night", Skycons.PARTLY_CLOUDY_NIGHT);
+    icons.set("partly-cloudy-night 2", Skycons.PARTLY_CLOUDY_NIGHT);
+    icons.set("cloudy", Skycons.CLOUDY);
+    icons.set("cloudy 2", Skycons.CLOUDY);
+    icons.set("rain", Skycons.RAIN);
+    icons.set("rain 2", Skycons.RAIN);
+    icons.set("sleet", Skycons.SLEET);
+    icons.set("snow", Skycons.SNOW);
+    icons.set("wind", Skycons.WIND);
+    icons.set("fog", Skycons.FOG);
+    icons.play();
+}

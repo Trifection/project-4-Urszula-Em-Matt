@@ -1,140 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Project 4</title>
     <link rel="stylesheet" href="styles/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700|Open+Sans:400,700"
-     rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700|Open+Sans:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=UnifrakturCook:700" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <div class="header-site-logo">
             <img src="assets/The_New_York_Times_logo.png" alt="nytimes logo">
         </div>
         <div class="website-intro-container">
-            <p class="website-intro">Ever wonder what the world was like the day you were born? Well enter your birthday below and we will show it to you. </p>
+            <p class="website-intro">Ever wonder what the world was like the day you were born? Well enter your
+                birthday below and we will show it to you. </p>
             <h3 id="displayDate"></h3>
         </div>
-    </header> 
-    
+    </header>
+
     <main>
         <form>
             <label for="date" class="visuallyhidden"></label>
             <input type="date" class="form-input" id="date">
             <button id="btn-submit"><span>Submit Birthday</span></button>
-        </form> 
+        </form>
 
         <div class="side-articles-container-left">
             <article data-location="0">
-                <!-- <div>
-                    <img src="assets/filler-2.jpg" alt="">
-                </div>
-                <h3>This is a fake title of an Article and its kind-of longish.</h3> -->
-            </article> 
+            </article>
 
             <article data-location="1">
-                <!-- <div class="side-article-image">
-                    <img src="assets/filler-2.jpg" alt="">
-                </div>
-                <h3>This is a fake title of an Article and its kind-of longish.</h3> -->
             </article>
         </div>
 
 
-        <div class="main-article"> 
-                    <div class="weather-results">
-                        <figure class="icons">
-                            <canvas id="clear-day" width="64" height="64">
-                            </canvas>
-                    
-                            <canvas id="clear-night" width="64" height="64">
-                            </canvas>
-                    
-                            <canvas id="partly-cloudy-day" width="64" height="64">
-                            </canvas>
-                    
-                            <canvas id="partly-cloudy-night" width="64" height="64">
-                            </canvas>
-                    
-                            <canvas id="cloudy" width="64" height="64">
-                            </canvas>
-                    
-                            <canvas id="rain" width="64" height="64">
-                            </canvas>
-                    
-                            <canvas id="sleet" width="64" height="64">
-                            </canvas>
-                    
-                            <canvas id="snow" width="64" height="64">
-                            </canvas>
-                    
-                            <canvas id="wind" width="64" height="64">
-                            </canvas>
-                    
-                            <canvas id="fog" width="64" height="64">
-                            </canvas>
-                        </figure>
-                    </div>
-            <article data-location="2">
-                <!-- <div>
-                    <img src="assets/filler.jpg" alt=""> 
-                </div>
-                <h3>This is a fake title of an Article and its kind-of longish.</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id mi elit.
-                Morbi eu leo ligula. Aenean rhoncus auctor dolor id phara.consectetur adipiscing elit. Ingem.</p> -->
-            </article>
-        </div> 
+        <div class="main-article">
+            <div class="weather-results">
+                <figure>
+                    <canvas id="icon" width="128" height="128"></canvas>
+                </figure>
+            </div>
 
-       <div class="side-articles-container-right">
+            <article data-location="2">
+
+            </article>
+        </div>
+
+        <div class="side-articles-container-right">
             <article data-location="3">
-                <!-- <div class="side-article-image">
-                    <img src="assets/filler-2.jpg" alt="">
-                </div>
-                <h3>This is a fake title of an Article and its kind-of longish.</h3> -->
+
             </article>
 
             <article data-location="4">
-                <!-- <div class="side-article-image">
-                    <img src="assets/filler-2.jpg" alt="">
-                </div>
-                <h3>This is a fake title of an Article and its kind-of longish.</h3> -->
+
             </article>
         </div>
 
     </main>
-    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='
+        crossorigin='anonymous'></script>
+    <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
     <script src="scripts/main.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.js'></script>
 </body>
+
 </html>
-
-
-<!-- 
-
-user lands on page
-prompts to user to enter birth month, day, and year  
-via three separate fields 
-behind the scenes using javascript, we will convert those three fields into a userDate string. 
--- this birthdate gets stored in a variable called userDate 
-
-prompt the user to select a "section" or "random"
-this will be stored in a variable called userSectionChoice 
-
-
-then, an api call to NYT article search, with the userDate as the begin_date and end_date
-this will isolate for articles that were released on the user's birthdate 
-the section will be used to sort through the array, and we will isolate for the articles that are part of the section that he user selects 
-
-then, randomly generate OR take the first three (undecided) articles to display on the page 
-
-1. find out how we can return more than 10 articles at a time
-2. figure out how we can filter throgh to find the possible values for news-desk 
-3. figure out if/how to apply the "news desk" type and only show articles related to that news desk.\
-
-then figure out how to 
-
-  -->
