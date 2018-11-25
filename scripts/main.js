@@ -23,7 +23,7 @@ newsApp.filterResults = (results, weather) => {
         const splitString = str.split(" "); //splice the pub into array by whitespace
         const sliceString = splitString[2].slice(0, 2); //the date is now in the second object, "slice" just use the first two numbers.
 
-        if ((newsApp.userSelectedDay == sliceString) && (results.snippet !== null)) {
+        if ((newsApp.userSelectedDay == sliceString) && (article.snippet !== null)) {
             return newsApp.filterResults;
         }
     });
@@ -69,7 +69,6 @@ newsApp.listenForChange = function () {
         month = date.getMonth() + 1;
         year = date.getFullYear();
         newsApp.userSelectedDay = day;
-        // console.log(year, month, day);
         newsApp.getArticle(month, year);
         newsApp.displayUserDate(year, month, day);
         newsApp.convertToUnix(year, month, day);
@@ -118,7 +117,6 @@ newsApp.getWeather = (myTime) => {
     let long = -74.006;
     let time = myTime;
     let unit = "?units=ca";
-    // let exclude = "?exclude=currently,flags";
     let url = `https://api.darksky.net/forecast/${key}/${lat},${long},${time}`; // time machine request
 
 
@@ -130,6 +128,7 @@ newsApp.getWeather = (myTime) => {
         const weatherInfo = {
             icon: res.currently.icon,
             summary: res.hourly.summary,
+            temperature: res.currently.temperature
         }
         newsApp.printWeather(weatherInfo);
     });
@@ -140,6 +139,7 @@ newsApp.printWeather = (weatherInfo) => {
     $(".weather-results").append(`
     <canvas id="${weatherInfo.icon}" width="80" height="80"></canvas>
     <h1>${weatherInfo.summary}
+    <h2>${weatherInfo.temperature.toFixed(0)} &#8457;
     `);
     newsApp.loadSkycons();
 }
