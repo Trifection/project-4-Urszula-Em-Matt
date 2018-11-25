@@ -217,6 +217,7 @@ header .website-intro-container {
   border-bottom: 1px solid black;
   border-top: 1px solid black; }
   header .website-intro-container p {
+    font-size: 1.6rem;
     width: 60%;
     margin: 0 auto; }
 
@@ -284,7 +285,13 @@ form {
     margin-right: calc(15px + 20%);
     background: black;
     color: white;
-    border: none; }
+    border: none;
+    opacity: 1;
+    -webkit-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s; }
+    form #btn-submit:hover {
+      opacity: .7; }
   form input[type="date"]::-webkit-clear-button {
     display: none; }
   form input[type="date"]::-webkit-inner-spin-button {
@@ -314,6 +321,9 @@ article {
   article a {
     color: #84858a;
     padding-top: 5px; }
+  article a:hover {
+    color: black;
+    font-weight: 600; }
 
 .weather-results {
   padding: 20px 40px;
