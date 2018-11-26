@@ -28,19 +28,36 @@ header{
         margin: 0 auto;
         padding: $space 0;
     }
+
     .website-intro-container{
-        padding-top: 5px;
+        padding: 5% 0;
         width: 100%;
         text-align:center;
         border-bottom: $seperator;
         border-top: $seperator;
+    
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 1s ease;
+    
+        h1{
+            text-align: center;
+            color: $hardgrey;
+            font-size: 3rem;
+            text-transform: uppercase;
+            padding-bottom: 30px;
+        }
         p{
-            font-size: 1.6rem;
-            width: 60%;
+            font-size: 5rem;
+            width: 100%;
             margin: 0 auto;
         }
     }
 }
+
+
+
 
 .draw {
   animation: draw 4000ms ease-in-out ;
@@ -214,6 +231,9 @@ article{
     padding-top: $space;
 }
 
+.website-intro-container-fadeout{
+    display: none;
+}
 
 
 
@@ -256,8 +276,23 @@ article{
             padding: $space 0;
     }
         .website-intro-container{
+            padding: 5% 0;
+            width: 100%;
+            text-align:center;
+            border-bottom: $seperator;
+            border-top: $seperator;
+                
+            h1{
+                text-align: center;
+                color: $hardgrey;
+                font-size: 2.2rem;
+                text-transform: uppercase;
+                padding-bottom: $space;
+            }
             p{
-                width: 100%;
+                font-size: 2.6rem;
+                // width: 100%;
+                // margin: 0 auto;
             }
         }
     }

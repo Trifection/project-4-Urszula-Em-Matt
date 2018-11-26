@@ -183,7 +183,8 @@ h3 {
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.5;
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  text-align: center; }
 
 h4 {
   font-family: "Libre Baskerville", serif;
@@ -221,14 +222,26 @@ header {
     margin: 0 auto;
     padding: 15px 0; }
   header .website-intro-container {
-    padding-top: 5px;
+    padding: 5% 0;
     width: 100%;
     text-align: center;
     border-bottom: 1px solid black;
-    border-top: 1px solid black; }
+    border-top: 1px solid black;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease; }
+    header .website-intro-container h1 {
+      text-align: center;
+      color: #84858a;
+      font-size: 3rem;
+      text-transform: uppercase;
+      padding-bottom: 30px; }
     header .website-intro-container p {
-      font-size: 1.6rem;
-      width: 60%;
+      font-size: 5rem;
+      width: 100%;
       margin: 0 auto; }
 
 .draw {
@@ -401,6 +414,9 @@ article {
 .article-top-space {
   padding-top: 15px; }
 
+.website-intro-container-fadeout {
+  display: none; }
+
 .weather-results {
   padding: 50px 40px;
   text-align: center;
@@ -425,8 +441,20 @@ article {
       width: 80%;
       margin: 0 auto;
       padding: 15px 0; }
-    header .website-intro-container p {
-      width: 100%; }
+    header .website-intro-container {
+      padding: 5% 0;
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid black;
+      border-top: 1px solid black; }
+      header .website-intro-container h1 {
+        text-align: center;
+        color: #84858a;
+        font-size: 2.2rem;
+        text-transform: uppercase;
+        padding-bottom: 15px; }
+      header .website-intro-container p {
+        font-size: 2.6rem; }
   form {
     width: 100%;
     -webkit-box-orient: vertical;
