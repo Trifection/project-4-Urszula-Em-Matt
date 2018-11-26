@@ -109,7 +109,6 @@ newsApp.init = function () {
     newsApp.loadSkycons();
 };
 
-<<<<<<< HEAD
 newsApp.todaysDate = function (){
     let todaysDate = new Date();
     let todayDay = todaysDate.getDate();
@@ -120,9 +119,7 @@ newsApp.todaysDate = function (){
 }
 
 // WEATHER----------------------------------------------------------------------------------------------
-=======
 // WEATHER API REQUEST
->>>>>>> 2dd5bf0501d89bf6e1e4070f62e02dd2f620b587
 newsApp.getWeather = (myTime) => {
     const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
     let lat = 40.712; //set lat and long based of New York City
