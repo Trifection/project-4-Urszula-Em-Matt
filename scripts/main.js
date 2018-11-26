@@ -60,7 +60,6 @@ newsApp.convertToUnix = (year, month, day) => {
 newsApp.listenForChange = function () {
     $('#btn-submit').on('click', function (event) {
         event.preventDefault();
-        $('main').removeClass('main-opacity');
         // Dont remove the +1 from the month/day, it will break the API call!!!!!!!!
         let day, month, year;
         let date = new Date($('#date').val());

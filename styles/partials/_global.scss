@@ -181,6 +181,19 @@ form{
     }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+        form input[type="date"] {
+            padding: 5px 5px 5px 43%;
+        }
+}
+
+@media (min-width: 300px) and (max-width: 767px) {
+        form input[type="date"] {
+            padding: 5px 5px 5px 36%;
+        }
+}
+
+
 // ARTICLES--------------------------------------------
 
 article{
@@ -209,17 +222,39 @@ article{
     padding:50px 40px;
     text-align:center;
     background-color: $easygrey;
+    position:relative;
+    figure{
+        position: relative;
+        div{
+            width:100%;
+            margin: 0 auto;
+            top: 30%;
+            position: absolute;
+        }
+    }
+}
+
+@media (min-width: 300px) and (max-width: 767px) {
+        .weather-results figure div {
+            top:10%;
+        }
 }
 
 
 
+
 // MOBILE--------------------------------------------
-@media (min-width: 320px) and (max-width: 1024px) {
+@media (min-width: 300px) and (max-width: 1024px) {
 
     // HEADER----------------------------------------
 
     header{
         width:90%;
+        .header-site-logo{
+            width: 80%;
+            margin: 0 auto;
+            padding: $space 0;
+    }
         .website-intro-container{
             p{
                 width: 100%;
@@ -245,10 +280,6 @@ article{
             width:100%;
             margin:0;
             height: 45px;
-        }
-
-        input[type="date"] {
-            padding: 5px 5px 5px 40%;
         }
         
     }

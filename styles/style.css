@@ -154,7 +154,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 html {
   font-size: 62.5%; }
 
-h1, h2, h3, p {
+h1, h2, h3, h4, p {
   margin: 0; }
 
 span {
@@ -184,6 +184,12 @@ h3 {
   font-weight: 700;
   line-height: 1.5;
   text-transform: capitalize; }
+
+h4 {
+  font-family: "Libre Baskerville", serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.5; }
 
 p {
   font-family: "Libre Baskerville", serif;
@@ -374,6 +380,14 @@ form {
     -webkit-box-shadow: none;
     -moz-box-shadow: none; }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  form input[type="date"] {
+    padding: 5px 5px 5px 43%; } }
+
+@media (min-width: 300px) and (max-width: 767px) {
+  form input[type="date"] {
+    padding: 5px 5px 5px 36%; } }
+
 article {
   border-bottom: 1px solid lightgrey;
   padding-bottom: 15px; }
@@ -390,11 +404,27 @@ article {
 .weather-results {
   padding: 50px 40px;
   text-align: center;
-  background-color: #f1f1f1; }
+  background-color: #f1f1f1;
+  position: relative; }
+  .weather-results figure {
+    position: relative; }
+    .weather-results figure div {
+      width: 100%;
+      margin: 0 auto;
+      top: 30%;
+      position: absolute; }
 
-@media (min-width: 320px) and (max-width: 1024px) {
+@media (min-width: 300px) and (max-width: 767px) {
+  .weather-results figure div {
+    top: 10%; } }
+
+@media (min-width: 300px) and (max-width: 1024px) {
   header {
     width: 90%; }
+    header .header-site-logo {
+      width: 80%;
+      margin: 0 auto;
+      padding: 15px 0; }
     header .website-intro-container p {
       width: 100%; }
   form {
@@ -413,8 +443,6 @@ article {
       width: 100%;
       margin: 0;
       height: 45px; }
-    form input[type="date"] {
-      padding: 5px 5px 5px 40%; }
   main {
     width: 90%;
     margin: 0 auto;
