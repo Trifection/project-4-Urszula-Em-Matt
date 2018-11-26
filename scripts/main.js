@@ -109,6 +109,16 @@ newsApp.init = function () {
     newsApp.loadSkycons();
 };
 
+newsApp.todaysDate = function (){
+    let todaysDate = new Date();
+    let todayDay = todaysDate.getDate();
+    let todayMonth = todaysDate.getMonth();
+    let todayYear = todaysDate.getFullYear();
+    $('.form-input').val(`${todayYear}-${todayMonth}-${todayDay}`)
+    console.log(todaysDate);
+}
+
+// WEATHER----------------------------------------------------------------------------------------------
 // WEATHER API REQUEST
 newsApp.getWeather = (myTime) => {
     const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
