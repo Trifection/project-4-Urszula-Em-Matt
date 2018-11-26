@@ -1,6 +1,6 @@
 const newsApp = {};
 newsApp.apiKey = `4135dcf939eb4bae959a26ff87fedc97`;
-
+// get article based off month and year
 newsApp.getArticle = (month, year) => {
     $.ajax({
         url: `https://api.nytimes.com/svc/archive/v1/${year}/${month}.json`,
@@ -9,11 +9,10 @@ newsApp.getArticle = (month, year) => {
             'api-key': newsApp.apiKey,
         },
     }).then(res => {
-        const results = res.response.docs;
-        newsApp.filterResults(results)
+        const results = res.response.docs; // store results in a variable called results
+        newsApp.filterResults(results);
     });
 };
-
 
 newsApp.filterResults = (results, weather) => {
 
@@ -28,27 +27,27 @@ newsApp.filterResults = (results, weather) => {
         }
     });
 
+    // for loop to iterate over filtered array and randomly generate 7 random articles 
     for (let i = 0; i < 7; i++) {
         const randomNumber = Math.floor(Math.random() * filteredByDay.length - 1)
-
         const randomNewsObject = filteredByDay.splice(randomNumber, 1);
-        // console.log(randomNewsObject);
-        newsApp.displayResults(randomNewsObject[0], i); //added the index to pass to the displayResults 
+        newsApp.displayResults(randomNewsObject[0], i); //added the index[i] to pass to the displayResults 
     }
 }
-
+// function that displays results and appends them to the page
 newsApp.displayResults = (newsArticle, indexOf, res) => {
+    // empty results
     $(`article[data-location=${indexOf}]`).empty();
 
-    let userContent = newsArticle.snippet;
-
+    // append headline, a snippet of the article, and a link to read more
     $(`article[data-location=${indexOf}]`).append(`
                 <h2>${newsArticle.headline.main}</h2>
-                <p> ${userContent}</p>
+                <p> ${newsArticle.snippet}</p>
                 <a href =${newsArticle.web_url} $>read more</a>
             `);
 };
 
+// unix time converter - number of seconds since January 1, 1970
 newsApp.convertToUnix = (year, month, day) => {
     let unixDate = new Date(`${year}-${month}-${day}`);
     const convertedTime = Math.floor(unixDate.getTime() / 1000);
@@ -56,22 +55,19 @@ newsApp.convertToUnix = (year, month, day) => {
     newsApp.getWeather(convertedTime);
 }
 
-
+// when user clicks submit - date is generated in year-month-day and is then converted to unix
 newsApp.listenForChange = function () {
     $('#btn-submit').on('click', function (event) {
-        event.preventDefault();
+        event.preventDefault(); // prevent default on submit
 
         $('div.website-intro-container').addClass("website-intro-container-fadeout");
-        
-
-        $('main').removeClass('main-opacity');
-        // Dont remove the +1 from the month/day, it will break the API call!!!!!!!!
-        let day, month, year;
-        let date = new Date($('#date').val());
-        day = date.getDate() + 1;
-        month = date.getMonth() + 1;
-        year = date.getFullYear();
-        newsApp.userSelectedDay = day;
+        $('main').removeClass('main-opacity'); // removes opacity
+        let day, month, year; // variable date declarations
+        let date = new Date($('#date').val()); // gets value of date selected from input w/ id of date
+        day = date.getDate() + 1; // day variable 
+        month = date.getMonth() + 1; // month variable
+        year = date.getFullYear(); // year variable 
+        newsApp.userSelectedDay = day; // redefined day to make it usable in global scope
         newsApp.getArticle(month, year);
         newsApp.displayUserDate(year, month, day);
         newsApp.convertToUnix(year, month, day);
@@ -79,6 +75,7 @@ newsApp.listenForChange = function () {
     newsApp.getArticle();
 };
 
+// converts month in integer to string(word)
 newsApp.displayUserDate = function (year, month, day) {
     const months = [];
     months[1] = "January";
@@ -95,40 +92,29 @@ newsApp.displayUserDate = function (year, month, day) {
     months[12] = "December";
 
     monthWord = months[month];
-    $('#displayDate').text(`Today is ${monthWord} ${day}, ${year}`)
-}
-
-newsApp.convertWeather = function (weatherDate) {
-    weatherDate.getTime();
+    $('#displayDate').text(`Today is ${monthWord} ${day}, ${year}`) //displays the date on page
 }
 
 $(function () { // start document ready 
     newsApp.init();
-
-
 }); // end of document ready 
 
+// init function
 newsApp.init = function () {
     newsApp.getArticle();
     newsApp.listenForChange();
+    newsApp.getWeather();
     newsApp.todaysDate();
+    newsApp.printWeather();
+    newsApp.loadSkycons();
 };
 
-newsApp.todaysDate = function (){
-    let todaysDate = new Date();
-    let displayToday = todaysDate.toSource();
-    console.log(todaysDate);
-    console.log(displayToday);
-
-}
-
-// WEATHER----------------------------------------------------------------------------------------------
+// WEATHER API REQUEST
 newsApp.getWeather = (myTime) => {
     const key = `3cfe0fcbefde809eecee7f6244bb8bdf`;
-    let lat = 40.712;
+    let lat = 40.712; //set lat and long based of New York City
     let long = -74.006;
     let time = myTime;
-    let unit = "?units=ca";
     let url = `https://api.darksky.net/forecast/${key}/${lat},${long},${time}`; // time machine request
 
 
@@ -138,14 +124,15 @@ newsApp.getWeather = (myTime) => {
         dataType: 'jsonp',
     }).then((res) => {
         const weatherInfo = {
-            icon: res.currently.icon,
-            summary: res.hourly.summary,
-            temperature: res.currently.temperature
+            icon: res.currently.icon, // icon needed for skycon
+            summary: res.hourly.summary, // summary of weather forecast
+            temperature: res.currently.temperature // current temperature
         }
         newsApp.printWeather(weatherInfo);
     });
 }
 
+// prints weather information (skycon, summary, and temperature) from darksky to the DOM
 newsApp.printWeather = (weatherInfo) => {
     $('.weather-results').empty();
     $(".weather-results").append(`
@@ -156,6 +143,7 @@ newsApp.printWeather = (weatherInfo) => {
     newsApp.loadSkycons();
 }
 
+// function to hold and run appropriate skycons depending on the weather
 newsApp.loadSkycons = () => {
     const icons = new Skycons({ "color": "#232323" });
     icons.set("clear-day", Skycons.CLEAR_DAY);
