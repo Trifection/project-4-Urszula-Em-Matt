@@ -347,7 +347,7 @@ article {
   text-align: center;
   background-color: #f1f1f1; }
 
-@media (min-width: 320px) and (max-width: 767px) {
+@media (min-width: 320px) and (max-width: 1024px) {
   header {
     width: 90%; }
     header .website-intro-container p {
