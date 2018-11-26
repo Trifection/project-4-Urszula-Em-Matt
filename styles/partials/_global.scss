@@ -52,6 +52,11 @@ main{
     flex-direction: row;
 }
 
+.main-opacity{
+    opacity: 0;
+    filter:alpha(opacity=40);
+}
+
 .main-section{
     padding: 0 $space;
     border-right: $seperator; 
@@ -167,7 +172,7 @@ article{
     border-bottom: $inner-seperator;
     padding-bottom: $space;
         a{
-            color:$hardgrey;
+            color: darkslategrey;
             padding-top:5px;
             // transition: 0.3s;
         }
@@ -190,6 +195,7 @@ article{
     text-align:center;
     background-color: $easygrey;
 }
+
 
 
 // MOBILE--------------------------------------------

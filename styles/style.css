@@ -236,6 +236,10 @@ main {
   -ms-flex-direction: row;
   flex-direction: row; }
 
+.main-opacity {
+  opacity: 0;
+  filter: alpha(opacity=40); }
+
 .main-section {
   padding: 0 15px;
   border-right: 1px solid black;
@@ -333,7 +337,7 @@ article {
   border-bottom: 1px solid lightgrey;
   padding-bottom: 15px; }
   article a {
-    color: #84858a;
+    color: darkslategrey;
     padding-top: 5px; }
   article a:hover {
     color: black;
