@@ -1,7 +1,19 @@
+$(function () { // start document ready 
+  newsApp.init();
+
+
+}); // end of document ready 
+
+
 const newsApp = {};
 newsApp.apiKey = `4135dcf939eb4bae959a26ff87fedc97`;
 // get article based off month and year
 newsApp.getArticle = (month, year) => {
+
+  $('#btn-submit').click(function () {
+  $('#preloader').removeClass("displayNone")
+  });
+
     $.ajax({
         url: `https://api.nytimes.com/svc/archive/v1/${year}/${month}.json`,
         method: 'GET',
@@ -9,6 +21,7 @@ newsApp.getArticle = (month, year) => {
             'api-key': newsApp.apiKey,
         },
     }).then(res => {
+      $("#preloader").addClass("displayNone")
         const results = res.response.docs; // store results in a variable called results
         newsApp.filterResults(results);
     });
@@ -51,7 +64,6 @@ newsApp.displayResults = (newsArticle, indexOf, res) => {
 newsApp.convertToUnix = (year, month, day) => {
     let unixDate = new Date(`${year}-${month}-${day}`);
     const convertedTime = Math.floor(unixDate.getTime() / 1000);
-    // console.log(convertedTime);
     newsApp.getWeather(convertedTime);
 }
 
@@ -95,9 +107,7 @@ newsApp.displayUserDate = function (year, month, day) {
     $('#displayDate').text(`Today is ${monthWord} ${day}, ${year}`) //displays the date on page
 }
 
-$(function () { // start document ready 
-    newsApp.init();
-}); // end of document ready 
+
 
 // init function
 newsApp.init = function () {
@@ -115,7 +125,6 @@ newsApp.todaysDate = function (){
     let todayMonth = todaysDate.getMonth();
     let todayYear = todaysDate.getFullYear();
     $('.form-input').val(`${todayYear}-${todayMonth}-${todayDay}`)
-    console.log(todaysDate);
 }
 
 // WEATHER----------------------------------------------------------------------------------------------
