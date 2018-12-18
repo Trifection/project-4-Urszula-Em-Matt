@@ -13,8 +13,10 @@
 </head>
 
 <body>
+  <div class="wrapper">
 	<!-- HEADER BEGINS -->
 	<header>
+    
 		<div class="header-site-logo">
 			<!-- NYT SVG ANIMATION -->
 			<svg class="draw" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -121,7 +123,8 @@
             	c-5.1,2.8-12.2,4.5-14.7,8.8c-2.6,4.5-0.9,11.6-1,17.5c0,6.1-1.9,13.4,0.7,18.2c2.8,5.2,9.9,7.9,14.9,12c2.5,2.1,4.2,1.5,6.4-0.3
             	c5.9-4.9,12-9.6,18-14.2c1.1-0.8,2.6-1.2,3.9-1.8C951.7,82.3,951,81.7,950.4,81z M923.8,45.6c0.3-0.1,0.6-0.3,0.9-0.4
             	c3.7,5.8,7.4,11.7,11.5,18.1c-4.1,2.7-8,5.3-12.5,8.3C923.8,62.3,923.8,54,923.8,45.6z" />
-			</svg>
+      </svg>
+      
 
 		</div>
 		<div class="website-intro-container">
@@ -139,7 +142,14 @@
 		</div>
 	</header>
 	<!-- HEADER ENDS -->
+  <div id="preloader" class="displayNone">
+    <div class="loader">
+    <p> hang on while we peruse the archives...</p>
+    <div class="spinner spinner-1"></div>
+    
 
+    </div>
+  </div>
 	<!-- MAIN BEGINS -->
 	<main class="main-opacity">
 
@@ -171,7 +181,22 @@
 			<article data-location="6" class="article-top-space"></article>
 		</div>
 	</main>
-	<!-- MAIN ENDS -->
+  <!-- MAIN ENDS -->
+
+  <!-- adding a footer for the NYT attributions -- it's required if we use their API -->
+  <footer>
+    <div>
+      <a href="http://developer.nytimes.com.">
+        <img src="./assets/poweredby_nytimes_200a.png" alt="data provided by the new York Times API">
+      </a>
+    </div>
+    <div class="team">
+      <p>made by <a target="_blank" href="http://emmaroe.io">Emma, </a> <a target="_blank"  href="http://mattvinall.com">Matt </a> and <a target="_blank" href="http://urszulawebmaker.com/">Urszula</a>
+         
+      </p>
+    </div>
+  </footer> 
+  </div> <!-- end wrapper -->
 
 	<!-- SCRIPTS -->
 	<script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='
