@@ -510,7 +510,20 @@ article{
             padding-left: 0;
         }
     }
-
-
 }
 
+// FOOTER MEDIA QUERY
+@media screen and (max-width: 500px) {
+   footer {
+       flex-direction: column;
+       justify-content: center;
+       .credits {
+           margin-top: 25px;
+       }
+       .team {
+           margin: 25px 0;
+           display: flex;
+           justify-content: center;
+       }
+   }
+}
